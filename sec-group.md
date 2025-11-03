@@ -1,0 +1,1 @@
+![[Sec-group-p-stamped.pdf]]
