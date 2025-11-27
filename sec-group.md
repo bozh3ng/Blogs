@@ -1,1 +1,1 @@
-![[Sec-group-p-stamped.pdf]]
+![[sec-group-p-stamped.pdf]]

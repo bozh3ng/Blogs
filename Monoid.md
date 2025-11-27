@@ -1,13 +1,13 @@
 ## Set 
-A monoid is a set with a binary operation $\langle S,\cdot \rangle$ which satisfies
-- Associativity: $(a \cdot b) \cdot c=a \cdot(b \cdot c)$ 
-- Identity element: $a\cdot e=e\cdot a=a$
-Roughly it's a 'group-like' structure without inverse 
+A monoid is a set with a binary operation $\langle S,\cdot \rangle$ which satisfies  
+- Associativity: $(a \cdot b) \cdot c=a \cdot(b \cdot c)$  
+- Identity element: $a\cdot e=e\cdot a=a$  
+Roughly, it's a 'group-like' structure without an inverse. 
 
-## One-object category
-A monoid is a one-object category
-Morphisms in category correspond to elements in monoid.
-Composition in category corresponds to binary operation in monoid
+## One-object category  
+A monoid is a one-object category  
+Morphisms in a category correspond to elements in a monoid.  
+Composition in a category corresponds to a binary operation in a monoid
 ```tikz
 \usepackage{tikz-cd}
 \begin{document}
@@ -47,9 +47,10 @@ Note: $M \times M \times M \xrightarrow{1_M \times \mu} M \times M$ and $M \time
 - Identity element
 $\mathbf{1}$ is the terminal object: 
 $$!_M: M \rightarrow \mathbf{1}$$
-In Set, it is singleton set $\{*\}$. 
-We define $e:=\eta(*) \in M$. In this case, the morphism $\eta: 1 \rightarrow M$ needs to exist and be chosen (At least one such morphism on Set, but in general $\mathbf{1}\rightarrow X$ not necessary exist, e.g. Posets). 
-To make $e$ behaves like identity:
+In Set, it is singleton set $\{*\}$.  
+We define $e:=\eta(*) \in M$. In this case, the morphism $\eta: 1 \rightarrow M$ needs to exist and be chosen (At least one such morphism on Set, but in general $\mathbf{1}\rightarrow X$ does not necessarily exist, e.g., Posets).  
+To make $e$ behave like an identity:
+
 $$\mu(e, a)=\mu(a, e)=a \quad(\forall a \in M)$$
 Commutative diagram:
 ```tikz
@@ -67,4 +68,4 @@ Commutative diagram:
 \end{document}
 ```
 ![[./image/potential_assignment/20250716201406.png]]
-Similarly, without this commutative diagram, $\mathbf{1} \times M \cong M \xrightarrow{\eta \times \mathbf{1}_M} M \times M$ and $M \times \mathbf{1} \cong M \xrightarrow{\mathbf{1}_M\times\eta} M \times M$ are not automatically equal
+Similarly, without this commutative diagram, $\mathbf{1} \times M \cong M \xrightarrow{\eta \times \mathbf{1}_M} M \times M$ and $M \times \mathbf{1} \cong M \xrightarrow{\mathbf{1}_M\times\eta} M \times M$ are not automatically equal.

@@ -2,13 +2,15 @@
 
 Bayesian Network(**BN**) is composed of Directed Acyclic Graph (**DAG**) and Conditional Probability Tables (**CPT**)
 
-In the DAG, nodes means events, edges means sequences between nodes. Each event happens(or not happens) with conditional probability $\mathbb{P}$, where the conditional probability is given by CPT.
+In the DAG, nodes represent events, and edges represent sequences between nodes. Each event happens(or does not happen) with conditional probability $\mathbb{P}$, where the conditional probability is given by CPT.
 
-> Why conditional probability in CPT ?
+> Why conditional probability in CPT?
 
-Because in Bayesian Network, events happen sequentially. The sequence of nodes implies the sequence of events. When building the BN, an event can only be observed after observing its parents (happen or not happen), which means every event probability (except the sources) in CPT is conditional probability. (But we can observe events _after_ the BN is completed)
+Because in a Bayesian Network, events happen sequentially. The sequence of nodes implies the sequence of events. When building the BN, an event can be observed only after observing its parents (happening or not), which means every event probability (except the sources) in the CPT is a conditional probability. (But we can observe events _after_ the BN is completed)
 
-One can think CPT as prior knowledge, the probabilities in it might change if we have more observations.
+One can think of CPT as prior knowledge; its probabilities might change as we acquire more observations.  
+
+
 
 _Example_  
 A simple BN with DAG:
@@ -32,10 +34,9 @@ $$\begin{aligned} P(B) & =\sum_i P\left(B A_i\right) \\ & =P(B \neg A)+P(B A) \\
 
 # 2. Independent or conditional independent?
 
-Mathematically, two event $A, B$ are independent iff $P(A | B)=P(A)$. Intuitively speaking, independent means the change of one event probability doesn’t affect another.
+Mathematically, two events $A, B$ are independent iff $P(A | B)=P(A)$. Intuitively speaking, independence means that the change of one event's probability doesn’t affect another.
 
 For example, originally we have $P(A)=0.5, P(B)=0.5$. Then something happened, $P(B)=0.9$. Because $A$ and $B$ are independent, $P(A)$ is not affected by the change of $P(B)$, still $P(A)=0.5$.
-
 ## Case 1
 
 Given a BN with DAG:
@@ -60,7 +61,7 @@ $$P(B)=P(B \mid \neg A) P(\neg A)+P(B \mid A) P(A)$$
 
 We can find $P(B | \neg A)$ and $P(B | A)$ from CPT, but we need $P(A)$ to calculate $P(B)$, which means the change of $P(A)$ affects $P(B)$.
 
-Similarly argument for $P(A)$ as independence is symmetric.
+Similar argument for $P(A)$ as independence is symmetric.
 
 So $A$ and $B$ are not independent.
 
@@ -91,7 +92,7 @@ But we don’t know $P(B)$ yet. So using Bayes’ Rule and Law of total probab
 
 $$\begin{aligned} P(B) & =\sum_i P\left(B A_i\right) \\ & =P(B \neg A)+P(B A) \\ & =P(B \mid \neg A) P(\neg A)+P(B \mid A) P(A)\end{aligned}$$
 
-The change of $P(A)$ leads to the change of $P(B)$ (because $A\ B$ are not independent), and thus leading to the change of $P(C)$ (because $B\ C$ are not independent).
+The change of $P(A)$ leads to the change of $P(B)$ (because $A\ B$ are not independent), and thus leads to the change of $P(C)$ (because $B\ C$ are not independent).
 
 So $A$ and $C$ are not independent.
 
@@ -132,7 +133,7 @@ For $P(C)$, by Bayes’ Rule and Law of total probability:
 
 $$\begin{aligned} P(C) & =\sum_i P\left(C B_i\right) \\ & =P(C \neg B)+P(C B) \\ & =P(C \mid \neg B) P(\neg B)+P(C \mid B) P(B)\end{aligned}$$
 
-The change of $P(A)$ leads to the change of $P(B)$ (because $A$ and $B$ are not independent, also everything in table is no fixed currently, they are priors, and can be modified by further observation), and thus leading to the change of $P(C)$. So the change of $P(A)$ does affect $P(C)$
+The change of $P(A)$ leads to the change of $P(B)$ (because $A$ and $B$ are not independent, also everything in the table is not fixed currently, they are priors, and can be modified by further observation), and thus leads to the change of $P(C)$. So the change of $P(A)$ does affect $P(C)$
 
 So $A$ and $C$ are not independent.
 
@@ -163,11 +164,11 @@ and CPT:
 
 > Are **A** and $C$ independent or not? Or, is $P(C)$ affected by the change of $P(A)$?
 
-Intuitively, $A$and $C$ are source nodes, means they are not affected directly by any other nodes, their incidences have no conditions. Also we can find $P(A)$ and $P(C)$ from CPT directly. The change of probability of one does not affect the other.
+Intuitively, $A$ and $C$ are source nodes, meaning they are not directly affected by any other nodes; their incidences have no conditions. Also, we can directly find $P(A)$ and $P(C)$ from the CPT. The change of probability of one does not affect the other.
 
-How about I use the argument in previous example: ‘$A$ and $B$ are not independent, $B$ and $C$ are not independent, so the change of $A$ affect $C$ ’?
+How about I use the argument in the previous example: ‘$A$ and $B$ are not independent, $B$ and $C$ are not independent, so the change of $A$ affects $C$ ’?
 
-The change of $P(A)$ can lead to the change of $P(B)$ indeed. But we don’t how the change of $P(B)$ would affect $P(C)$. In previous example, we have $P(C)=P(C|\neg B)P(\neg B)+P(C|B)P(B)$, where $P(C)$ can be _determined_ by $P(B)$ and CPT. But here, for $P(B)$, we have
+The change in $P(A)$ can indeed lead to a change in $P(B)$ . But we don’t know how the change of $P(B)$ would affect $P(C)$. In previous example, we have $P(C)=P(C|\neg B)P(\neg B)+P(C|B)P(B)$, where $P(C)$ can be _determined_ by $P(B)$ and CPT. But here, for $P(B)$, we have
 
 $$\begin{aligned} P(B)= & \sum_i \sum_j P\left(B A_i C_j\right) \\ = & P(B A C)+P(B A \neg C)+P(B \neg A C)+P(B \neg A \neg C) \\ = & P(B \mid A C) P(A C)+P(B \mid A \neg C) P(A \neg C) \\ & +P(B \mid \neg A C) P(\neg A C)+P(B \mid \neg A \neg C) P(\neg A \neg C)\end{aligned}$$
 
@@ -179,7 +180,7 @@ So $A$ and $C$ are independent.
 
 Now we know the value of $P(B)$ and it is “fixed”. $P(B)$ depends on $A$ and $C$. If we change $P(A)$, $P(C)$ would also be changed to keep the consistency of $P(B)$.
 
-So$A$ and $C$ are not independent given $B$.
+So $A$ and $C$ are not independent given $B$.
 
 The node $B$ in structure $A\rightarrow B\leftarrow C$  is called collider
 

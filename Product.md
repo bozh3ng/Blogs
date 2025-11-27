@@ -201,8 +201,8 @@ $$N \rtimes_{\text {triv }} H=N \times H$$
 ## Category product
 [[Category Product]]
 ## Tensor Product 
-The tensor product $\otimes$ is part of the structure of a monoidal category. For simplicity, we take vector space for example)
-Given two vector space $V$ and $W$, their tensor product $V \otimes W$ is another vector space. 
+The tensor product $\otimes$ is part of the structure of a monoidal category. For simplicity, we take the vector space for example)
+Given two vector spaces $V$ and $W$, their tensor product $V \otimes W$ is another vector space. 
 Definition using universal property:
 For vector spaces $V, W$ over $F$, the tensor product $V \otimes W$ is a vector space together with a bilinear map
 $$
@@ -237,6 +237,6 @@ $$
 \operatorname{Lin}(V \otimes W, Z) \cong \operatorname{Bilin}(V \times W, Z) \quad \text { naturally in } Z,
 $$
 
-The abstract tensor product is basis-free, once we pick bases and turn maps into matrices, tensor product becomes the Kronecker product.
+The abstract tensor product is basis-free, once we pick bases and turn maps into matrices, the tensor product becomes the Kronecker product.
 
 

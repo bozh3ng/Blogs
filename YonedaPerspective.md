@@ -1,11 +1,10 @@
-Recall Yoneda Lemma: For any functor $F: \mathbf{C} \rightarrow\mathbf{Set}$, whose domain $\mathbf{C}$ is locally small and any object $c \in \mathrm{C}$, there is a bijection
-$$
-\operatorname{Nat}(\mathbf{C}(c,-), F) \cong F c
-$$
+Recall Yoneda Lemma: For any functor $F: \mathbf{C} \rightarrow\mathbf{Set}$, whose domain $\mathbf{C}$ is locally small and any object $c \in \mathrm{C}$, there is a bijection  
+$$  
+\operatorname{Nat}(\mathbf{C}(c,-), F) \cong F c  
+$$  
 that associates a natural transformation $\alpha: \mathbf{C}(c,-) \Rightarrow F$ to the element $\alpha_c\left(1_c\right) \in F c$. Moreover, this correspondence is natural in both $c$ and $F$.
 
-If we gaze this equation for a while, we will find that it contains a lot of information. But surprisingly , these information is rather intuitive.
-
+If we gaze at this equation for a while, we will find that it contains a lot of information. But surprisingly, this information is rather intuitive.
 # What it means? 
 $F: \mathbf{C} \rightarrow\mathbf{Set}$ is **any** (covariant) functor on $\mathbf{C}$
 $\mathbf C(c,-):\mathbf C\to\mathbf{Set}$ is the representable functor at $c\in \mathbf{C}$. It sends an object $x$ to the hom-set $\mathbf{C}(c, x)$ and an arrow $g$ : $x \rightarrow y$ to the post-composition map $g \circ-: \mathbf{C}(c, x) \rightarrow$ $\mathbf{C}(c, y)$
@@ -56,7 +55,7 @@ which is **full and faithful** (determines objects up to unique isomorphism)
 - "Full: every natural transformation $Y c \Rightarrow Y d$ comes from exactly one arrow $f: c \rightarrow d .^{\prime \prime}$
 
 Suppose we want to study $c\in\mathbf{C}$, $Y$ embeds $\mathbf{C}$ inside the much larger category $[\mathbf{C}^{\mathrm{op}},\mathbf{Set}]$, maps $c$ to  $\mathbf{C}(-, c)$ which means all arrows into $c$ in category $\mathbf{C}$. Because $Y$ is full and faithful, studying all arrows into $c$ is isomorphic to studying $c$ itself. 
-Any object $c$ is determined by all its surrounding into (or out of) arrows.
+Any object $c$ is determined by all its surroundings into (or out of) arrows.
 
 
 

@@ -3,25 +3,26 @@ Also published in [Medium](https://medium.com/@andrew.b.zheng/thinkings-about-pr
 
 **Statement**: Toss a coin, the probability of getting a head is 0.5.
 
-There are (at least) two common explanations about this statement, Frequentist and Bayesian.
+There are (at least) two common explanations for this statement: Frequentist and Bayesian.
 
-In the Frequentist interpretation, probability is defined as the long-run tests and observations. So, if we believe the statement, and we toss the coin 100 times, we will get about 50 heads, may be 53 may be 45, but around 50. If we toss the coin many many times , let’s say A times, we will observe exactly A/2 heads.  
-While Bayesian said, we don’t know about the probability at the beginning, we guess one (as prior). Let’s (tentative) believe the probability of getting a head is 1, it doesn’t matter whether the belief is right or wrong. Then we update it by more tests. We toss it again, we observe a tail, then the probability can not be 1, we update our belief (as posterior). We toss it again, we update, we toss again… If we toss and update many many times, the belief (as the result of Bayes’ theorem) is 0.5
+In the Frequentist interpretation, probability is defined as the long-run tests and observations. So, if we believe the statement, and we toss the coin 100 times, we will get about 50 heads, maybe 53 maybe 45, but around 50. If we toss the coin many many times , let’s say A times, we will observe exactly A/2 heads.  
+While Bayesian said, "We don’t know the probability at the beginning; we guess one (as a prior)." Let’s (tentatively) believe the probability of getting a head is 1; it doesn’t matter whether the belief is right or wrong. Then we update it with more tests. We toss it again, we observe a tail, then the probability can not be 1, we update our belief (as posterior). We toss it again, we update, we toss again… If we toss and update many many times, the belief (as the result of Bayes’ theorem) is 0.5
 
-They both intuitively make sense, but again, what it means if something happens with probability? If I was told I have probability 0.4 to pass an exam, and I can attend the exam only once, either I pass it or I don’t. What it means I can pass it with probability 0.4? There is no such thing as 0.4 of a diploma. I will take the exam anyway, and I either pass or fail, what is the difference to me between 0.9 and 0.1 probability of passing?
+They both intuitively make sense, but again, what does it mean if something happens with probability? If I were told I have a 0.4 probability of passing an exam and can attend it only once, then either I pass it or I don’t. What does it mean that I can pass it with probability 0.4? There is no such thing as 0.4 of a diploma. I will take the exam anyway, and I either pass or fail, what is the difference to me between 0.9 and 0.1 probability of passing?
+
+
 # 2. (Discrete) Probability
-
-**Definition**: A finite probability space ($\Omega$ , $\mathbb{P}$) is a finite set $\Omega$  and its (probability) measure ℙ which satisfies
-- $\mathbb{P}(\Omega)=1$
+  
+**Definition**: A finite probability space ($\Omega$ , $\mathbb{P}$) is a finite set $\Omega$  and its (probability) measure ℙ which satisfies  
+- $\mathbb{P}(\Omega)=1$  
 - $\forall A\in \Omega,\mathbb{P}\geq0$
 
-Technically speaking, a probability space is a triple $(\Omega,\mathcal{A}, \mathbb{P})$ , we omit the sigma-algebra to avoid more confusions.
+Technically speaking, a probability space is a triple $(\Omega,\mathcal{A}, \mathbb{P})$; we omit the sigma-algebra to avoid more confusions.
 
-Loosely speaking, probability is a function which can map an element in a set to real number between 0 and 1.
+Loosely speaking, probability is a function that can map an element in a set to a real number between 0 and 1.
 
-Toss a coin, the probability of getting a head is 0.5, it means: We construct a set with all the cases of tossing a coin. One case is that we get a head. The probability we are discussing is a function that map the event “head case” to real number 0.5.  
-I can pass an exam with probability 0.4, it means there exists a function, which can map the event “I pass the exam” to real number 0.4. It is no difference from mapping the event to 0.9, or mapping the event to 0.1. Mathematics is not always useful in reality.
-
+Toss a coin, the probability of getting a head is 0.5, which means: We construct a set with all the cases of tossing a coin. One case is that we get a head. The probability we are discussing is a function that maps the event “head case” to the real number 0.5.  
+I can pass an exam with probability 0.4; that is, there exists a function that maps the event “I pass the exam” to the real number 0.4. It is no different from mapping the event to 0.9 or mapping the event to 0.1. Mathematics is not always useful in the real world.
 # 3. Conditional Probability
 
 Recall probability space $(\Omega, \mathbb{P})$ 
@@ -100,15 +101,15 @@ $$
 
 Intuitively, uncorrelated random variables have no linear relationship between them.
 
-Independence guarantees that $X$ and $Y$ are uncorrelated. But uncorrelated does not necessarily imply independence. RVs can be uncorrelated but non-linear dependent.
+Independence guarantees that $X$ and $Y$ are uncorrelated. But uncorrelated does not necessarily imply independence. RVs can be uncorrelated but non-linearly dependent.
 
 ## 4.2 Geometric explanation
 
 Random variables are functions defined on the sample space 𝝮, they satisfy the axioms of a vector space. So the set of RVs forms a vector space ( Hilbert space 𝗟²(𝝮) , technically)
 
-For simplicity and WLOG, we ‘shift’ RVs by $X^\prime=X-\mathbb{E}[X]$ , $Y^\prime=Y-\mathbb{E}[Y]$ . Shift doesn’t affect properties of vectors. In this case, $\mathbb{E}(X)=\mathbb{E}(Y)=0$ 
+For simplicity and WLOG, we ‘shift’ RVs by $X^\prime=X-\mathbb{E}[X]$ , $Y^\prime=Y-\mathbb{E}[Y]$ . Shift doesn’t affect the properties of vectors. In this case, $\mathbb{E}(X)=\mathbb{E}(Y)=0$ 
 
-The expectation corresponds to inner product in $L^2$
+The expectation corresponds to the inner product in $L^2$
 $$
 \langle X, Y\rangle=\mathbb{E}[X Y]
 $$
@@ -118,7 +119,7 @@ $$
 \|X\|=\sqrt{\mathbb{E}\left[X^2\right]}
 $$
 
-The variance of $X$ is its squared 𝗟²-norm:
+The variance of $X$ is its squared $L^2$-norm:
 $$
 \operatorname{Var}(X)=\mathbb{E}\left[(X-\mathbb{E}[X])^2\right]=\mathbb{E}\left[\left(X^{\prime}\right)^2\right]=\left\|X^{\prime}\right\|^2
 $$

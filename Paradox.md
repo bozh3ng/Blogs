@@ -1,6 +1,6 @@
 # [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem#:~:text=In%20probability%20theory%2C%20the%20birthday,that%20probability%20to%20exceed%2050%25)
 ## Question
-If we have a set of $n$ randomly chosen people, what is the probability that at least two will share the same birthday? the counterintuitive fact is that only 23 people are needed for that probability to exceed 50%.
+If we have a set of $n$ randomly chosen people, what is the probability that at least two will share the same birthday? The counterintuitive fact is that only 23 people are needed for that probability to exceed 50%.
 
 ## Solution
 We assume that 1 year has 365 days and birthdays of different people are independent.
@@ -29,7 +29,7 @@ Intuitively (this is not the correct answer), we have $253 \times \frac{1}{365} 
 Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
 
 ## Intuition 1
-We know that $P(car)=\frac{1}{3}$，$P(goat)=\frac{2}{3}$.  What is the probability of win if we stay $P(\text{stay and win})$ ? 
+We know that $P(car)=\frac{1}{3}$，$P(goat)=\frac{2}{3}$.  What is the probability of winning if we stay $P(\text{stay and win})$ ? 
 If we are in situation $P(car)=\frac{1}{3}$, we stay, we win. 
 If we are in situation $P(goat)=\frac{2}{3}$, we stay, we lose. 
 So $P(\text{stay and win})=\frac{1}{3}$
@@ -37,21 +37,21 @@ So $P(\text{stay and win})=\frac{1}{3}$
 ## Intuition 2
 Regardless of our initial choice (car or goat), the host can always reveal a goat behind another door. This action is trivial and provides no new information, so our win probability remains unchanged ($\frac{1}{2}$ or $\frac{1}{3}$). 
 
-## Case 1
-The host—who knows the contents—must open a different door with a goat and must offer the switch. (The host’s action is not random, it’s constrained by the rules)
+## Case 1  
+The host—who knows the contents—must open a different door with a goat and must offer the switch. (The host’s action is not random; it’s constrained by the rules.)
 
-Let's build a probability space 
-Sample space :
-$$
-\Omega=\left\{(c, i, h) \in\{1,2,3\}^3: h \neq c, h \neq i, \text { and } h \text { obeys the host rule }\right\} .
-$$
-- $c$ - door that hides the car
-- $i$ - contestant's initial choice
+Let's build a probability space.  
+Sample space :  
+$$  
+\Omega=\left\{(c, i, h) \in\{1,2,3\}^3: h \neq c, h \neq i, \text { and } h \text { obeys the host rule }\right\} .  
+$$  
+- $c$ - door that hides the car  
+- $i$ - contestant's initial choice  
 - $h$ - door the host opens
 
-The host rule:
-- If $c=i$ the host randomly picks one of the two remaining goats, so $h\in\{1,2,3\} \backslash\{c\}$ with probability $\frac{1}{2}$ each.
-- If $c \neq i$ there is only one goat door available, the host must open it, $h\in\{1,2,3\} \backslash\{c,i\}$ with probability 1
+The host rule:  
+- If $c=i$, the host randomly picks one of the two remaining goats, so $h\in\{1,2,3\} \backslash\{c\}$ with probability $\frac{1}{2}$ each.  
+- If $c \neq i$, there is only one goat door available, the host must open it, $h\in\{1,2,3\} \backslash\{c,i\}$ with probability 1
 
 That leaves 12 elements in $\Omega$
 
@@ -133,14 +133,14 @@ cih
 332
 ```
 
-In this sample space, host might open a goat door($c\neq h$), might open a car door($c=h$). 
-In reality, the event "door $H$ is not the car" happened
-$$G=\{(c, i, h): c \neq h\}$$
-This event happens with probability 
-$$P(G)=\frac{12}{18}=\frac{2}{3}$$
-The subspace $\Omega_G$ under event $G$ is the same as space in case 1 . But the probability is different 
-For every remaining triple $(c, i, h) \in G$,
-$$P_G\{(c, i, h)\}=\frac{P\{(c, i, h)\}}{P(G)}=\frac{1 / 18}{2 / 3}=\frac{1}{12}$$
+In this sample space, the host might open a goat door($c\neq h$) or might open a car door($c=h$).  
+In reality, the event "door $H$ is not the car" happened  
+$$G=\{(c, i, h): c \neq h\}$$  
+This event happens with probability  
+$$P(G)=\frac{12}{18}=\frac{2}{3}$$  
+The subspace $\Omega_G$ under event $G$ is the same as the space in case 1. But the probability is different  
+For every remaining triple $(c, i, h) \in G$,  
+$$P_G\{(c, i, h)\}=\frac{P\{(c, i, h)\}}{P(G)}=\frac{1 / 18}{2 / 3}=\frac{1}{12}$$  
 Reason: [[Probability-1]] Conditional Probability. Intuitively, since the host randomly chose a door, each option has an equal probability.
 
 In subspace $\Omega_G$, we still define condition as 
@@ -165,7 +165,7 @@ Because he chose that door under the rule "never show the car", his action impli
 That filtered choice is the information-laden signal, and it is what makes switching the better bet.
 
 ## But...?
-Imagine we're on a game show. We choose one door, and the host opens another to reveal a goat. We don't know if the host knows what's behind his chosen door. Should we switch our choice? How do these calculations helps us? 
+Imagine we're on a game show. We choose one door, and the host opens another to reveal a goat. We don't know if the host knows what's behind his chosen door. Should we switch our choice? How do these calculations help us? 
 Treat the uncertainty about the host as another random variable and use Bayes’ rule.
 $K$: Informed host
 $R$: Random host 
@@ -237,7 +237,7 @@ $$
 R=\{x \mid x \notin x\}
 $$
 So, if we admit both Separation and consistency, then a universal set cannot exist.
-(We can also use other axioms to prove a universal set cannot exist, for example axiom of power set + Cantor's theorem, axiom of regularity, etc.)
+(We can also use other axioms to prove a universal set cannot exist, for example the axiom of power set + Cantor's theorem, the axiom of regularity, etc.)
 
 ## How this helps to avoid Russell's paradox?
 Axiom schema of specification -> No universal set -> Russell's set can not be constructed. 
@@ -245,14 +245,15 @@ The notation $R=\{x \mid x \notin x\}$ is not a set.
 
 ## (Optional)Axiom of regularity
 ### Recall: Infinite
-To understand this, first we give a little introduction to infinite.
-Take natural number for example. In element level, a single natural number $n$ itself always finite. In set level, the set to natural number $\mathbb{N}$ is infinite, whose cardinality is $\aleph_0$ 
+To understand this, first, we give a little introduction to infinity.  
+Take a natural number, for example. At the element level, a single natural number $n$ itself is always finite. In set level, the set to natural number $\mathbb{N}$ is infinite, whose cardinality is $\aleph_0$ 
 
-Why $n$ is finite? 
-No matter which $n$ we choose, we can finish counting up to $n$ in finitely many steps
-Why $\mathbb{N}$ infinite? 
-A set is called infinite when no fixed natural number can exhaust its elements.
+Why is $n$ finite?  
+No matter which $n$ we choose, we can finish counting up to $n$ in finitely many steps  
+Why $\mathbb{N}$ infinite?  
+A set is called infinite when no fixed natural number can exhaust its elements.  
 Or, a set $X$ is infinite iff there exists a bijection between $X$ and a proper subset of $X$.
+
 We can use:
 $$
 \begin{gathered}
@@ -261,48 +262,48 @@ n\mapsto n+1
 \end{gathered}
 $$
 ### Axiom of regularity
-Formal statement
-$$\forall A(A \neq \varnothing \Longrightarrow \exists x(x \in A \wedge x \cap A=\varnothing))$$
+Formal statement  
+$$\forall A(A \neq \varnothing \Longrightarrow \exists x(x \in A \wedge x \cap A=\varnothing))$$  
 Every non-empty set $A$ has an element that shares no elements with $A$ itself.
 
-Let's have an example 
-Let
-$$
-A=\{\{1\},\{2,3\},\{4,5,6\}\}, \quad x=\{1\} \in A
-$$
-- Elements of $x$ : 1 .
-- Elements of $A$ : $\{1\},\{2,3\},\{4,5,6\}$.
-The number 1 is not itself one of those three sets, so
-$$
-x \cap A=\varnothing
+Let's have an example.  
+Let  
+$$  
+A=\{\{1\},\{2,3\},\{4,5,6\}\}, \quad x=\{1\} \in A  
+$$  
+- Elements of $x$ : 1 .  
+- Elements of $A$ : $\{1\},\{2,3\},\{4,5,6\}$.  
+The number 1 is not itself one of those three sets, so  
+$$  
+x \cap A=\varnothing  
 $$
 
-If we think of the membership relation $\in$ as a tree whose root is the set $A$, we follow one branch and go deeper and deeper, eventually we will arrive the bottom. 
+If we think of the membership relation $\in$ as a tree whose root is the set $A$, we follow one branch and go deeper and deeper, eventually we will arrive at the bottom. 
 
-The ordinal-rank viewpoint
-Define the rank of a set by transfinite recursion:
-$$
-\operatorname{rk}(x)=\sup \{\operatorname{rk}(y)+1: y \in x\} .
-$$
-Each element $n \in \omega$ is the set $\{0,1, \ldots, n-1\}$. $\operatorname{rk}(n)=n$ is finite. 
+The ordinal-rank viewpoint  
+Define the rank of a set by transfinite recursion:  
+$$  
+\operatorname{rk}(x)=\sup \{\operatorname{rk}(y)+1: y \in x\} .  
+$$  
+Each element $n \in \omega$ is the set $\{0,1, \ldots, n-1\}$. $\operatorname{rk}(n)=n$ is finite.  
 But the set $\omega$ itself $\operatorname{rk}(\omega)=\sup \{\operatorname{rk}(n)+1: n \in \omega\}$ is infinite
 
-We can analogy this to natural number: every individual natural number is finite, but the whole set $\mathbb{N}$ is infinite.
+We can analogize this to natural numbers: every individual natural number is finite, but the whole set $\mathbb{N}$ is infinite.
 
 Finite per instance does not imply a finite global bound. Regularity guarantees that every downward $\in$-chain is finite; it does not say there is one finite number that caps them all.
 
 Regularity is an existence axiom: it says there is such a bottom element; it does not give an algorithm for finding it.
 
-This axiom constraints the behaviors of membership relation $\in$ 
-- No membership loops. We can't have $x \in x$, or a cycle $x_0 \in x_1 \in \cdots \in x_k=x_0$.
+This axiom constrains the behaviors of the membership relation $\in$  
+- No membership loops. We can't have $x \in x$, or a cycle $x_0 \in x_1 \in \cdots \in x_k=x_0$.  
 - No infinite descending $\varepsilon$-chains. There is no sequence $x_0 \ni x_1 \ni x_2 \ni \cdots$ that goes on forever.
 
 Consequence: $x \notin x$ for all sets $x$. (Apply the axiom to $A=\{x\}$, then we have $x \cap\{x\}=\varnothing$, so $x \notin x$.)
 
-No set can contain itself.
-If something contains itself, then it is not a set.
-But every set is a subset of itself ( $x \subseteq x$ ).
-There is something "larger" than the set.
+No set can contain itself.  
+If something contains itself, then it is not a set.  
+But every set is a subset of itself ( $x \subseteq x$ ).  
+There is something "larger" than the set.  
 
 ### Note
 Regularity by itself does not stop the paradox
