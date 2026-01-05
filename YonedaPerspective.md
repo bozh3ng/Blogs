@@ -19,26 +19,34 @@ Maybe obviously, but it is worth mentioning that this bijection not only set-lev
 (We mean class-size and set-size)
 $\mathbf{C}$ not necessary to be small just needs to be locally small, means $\mathbf{C}$ itself can be class-size.
 $F$, or $\mathbf{C}(c,-)$, collapses $\mathbf{C}$ to set-size $Fc\in\mathbf{Set}$, or $\mathbf{C}(c,x)\in\mathbf{Set}$. 
+
 So $Fc$, or $\mathbf{C}(c,x)$ is small, but $F$ or  $\mathbf{C}(c,-)$ consists one set(and one function) for every object (and arrow) of $\mathbf{C}$, can be large. 
+
 Yoneda says that when the domain functor is representable ($\mathbf{C}(c,-)$ in our case), a natural transformation is encoded by one single set element ($\alpha \longleftrightarrow \alpha_c\left(1_c\right) \in F c$ in our case), so the whole hom-object ( $\operatorname{Nat}(\mathbf{C}(c,-), F)$ in our case) is small (isomorphic to $Fc$ in our case).
+
 $\operatorname{Nat}(\mathbf{C}(c,-), F)$ is set-size, but its member $\alpha$ is a class-size family $\{\alpha_x\}$. The gigantic family $\{\alpha_x\}$ is determined by a single set element  $\alpha_c\left(1_c\right)$. 
 
 
 # Philosophy
 An object is determined up to unique isomorphism by how all other objects map into (or out of) it.
+
 An object is determined by its relationships to other objects.
+
 Suppose we want to study an object $c \in \mathbf{C}$. For every object $c \in \mathbf{C}$ there are two functors built only from the hom-sets of $\mathbf{C}$ : covariant and contravariant. For simplicity we use contravariant:
 $$Y_c:=\mathbf{C}(-, c): \mathbf{C}^{\mathrm{op}} \longrightarrow\mathbf{Set}$$
 means all arrows into $c$ in category $\mathbf{C}$
+
 Recall Yoneda: 
 $$
 \operatorname{Nat}(\mathbf{C}(-,c), F) \cong F c
 $$
+
 We suppose $F=\mathbf{C}(-,d)$, so for any two objects $c, d \in \mathbf{C}$, we have a natural bijection:
 $$
 \operatorname{Nat}(Y c, Y d) \cong \mathbf{C}(c, d)
 $$
 where $Y c=\mathbf{C}(-, c)$ and $Y d=\mathbf{C}(-, d)$.
+
 The LHS $\operatorname{Nat}$ gives a functor category : $[\mathbf{C}^{\mathrm{op}},\mathbf{Set}]$ , whose 
 - Objects: functors $\mathbf{C}^{\mathrm{op}} \longrightarrow\mathbf{Set}$. $Yc,Yd$ in our case. 
 - Nat between functors mentioned above. $\operatorname{Nat}(Y c, Y d)$ in our case

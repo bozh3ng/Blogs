@@ -1,3 +1,4 @@
+We introduce 3 ways to define/understand the monoid.
 ## Set 
 A monoid is a set with a binary operation $\langle S,\cdot \rangle$ which satisfies  
 - Associativity: $(a \cdot b) \cdot c=a \cdot(b \cdot c)$  
@@ -5,9 +6,7 @@ A monoid is a set with a binary operation $\langle S,\cdot \rangle$ which satisf
 Roughly, it's a 'group-like' structure without an inverse. 
 
 ## One-object category  
-A monoid is a one-object category  
-Morphisms in a category correspond to elements in a monoid.  
-Composition in a category corresponds to a binary operation in a monoid
+A monoid is a one-object category. Morphisms in this category correspond to elements in a monoid.  Composition in this category corresponds to a binary operation in a monoid
 ```tikz
 \usepackage{tikz-cd}
 \begin{document}
