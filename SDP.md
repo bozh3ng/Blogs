@@ -159,7 +159,7 @@ If both the primal and dual problems are strictly feasible, then their optimal s
 
 # Application
 ## Euclidean distance problem
-[[EuclideanDistanceProblem]]
+[[Euclidean Distance Problem]]
 Recall Euclidean distance matrix completion problem. If $D^{(2)}$ misses some data, we cannot use cMDS to find the points.
 We can write the entries of a squared distance matrix in terms of Gram matrix:
 $$
