@@ -5,7 +5,7 @@ $$
 $$
 So $df / dx$ is the limit of the ratio $\Delta f / \Delta x$. In a sense, "d" is the infinitesimal version of  "$\Delta$". So "dx" means "an infinitely small piece of x".
 
-But next let me verbosely introduce a differential geometry perspective. Why? Because it is more fundamental, it reflects the cognitive model: what is the intrinsic truth we believe? How do we describe it? 
+But next let me strenuously introduce a differential geometry perspective. Why? Because it is more fundamental, it reflects the cognitive model: what is the intrinsic truth we believe? How do we describe it? 
 
 # The differential geometry perspective
 The general idea: $dx$ is a function that can represent tangent vectors in x-coordinate. $dx(v)$ is a representation of $v$ in x-coordinate. 

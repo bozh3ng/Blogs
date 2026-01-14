@@ -21,9 +21,9 @@ Nothing new is invented; I mainly focus on explaining and connecting certain con
 
 [[PCA]]: What are PCA and SVD talking about, and why do they work? 
 
-[[PML brief note-1]]: How do we do machine learning using probability theory, take VAE for example. How do we generate something meaningful as the reverse process of learning (unfinished)? 
+[[PML brief note-1]]: How do we do machine learning using probability theory, take VAE for example. How do we generate something meaningful as the reverse process of learning (unfinished)? And some abused notations. 
 
-[[Probability-1]]: How do we define probability, conditional probability, and random variable using measure theory (unfinished).
+[[Probability-1]]: How do we define probability, conditional probability, and random variable using measure theory (unfinished). Also introduce expectation and some abused notations. 
 
 [[Product]]: Introduce product operation in vector, matrix, group, category. To what extent are they similar/different?
 

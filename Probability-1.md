@@ -1,4 +1,6 @@
-Also published in [Medium](https://medium.com/@andrew.b.zheng/thinkings-about-probability-a2be81d93f49)
+---
+~
+---
 # 1. Confusion
 
 **Statement**: Toss a coin, the probability of getting a head is 0.5.
@@ -124,3 +126,81 @@ $$
 \operatorname{Var}(X)=\mathbb{E}\left[(X-\mathbb{E}[X])^2\right]=\mathbb{E}\left[\left(X^{\prime}\right)^2\right]=\left\|X^{\prime}\right\|^2
 $$
 
+# 5. Expectation
+First recall **probability space** is a triple $(\Omega, \mathcal{F}, P)$ , where $\mathcal{F}$ is a sigma-algebra, the **probability** $P$ is a function $P:\mathcal{F}\rightarrow[0,1]$ that satisfies non-negativity, normalization, countable additivity. 
+
+For a continuous random variable $X$ , the **Probability Density Function** (PDF) $f(x)$ is a function such that:
+$$
+P(a \leq X \leq b)=\int_a^b f(x) d x
+$$
+Or
+$$
+P(A)=\int_A f(x) d x \quad \text { for all sets } A
+$$
+Note that $f(x)$ is not $P(X=x)$. Rather, $f(x)dx$ represents the infinitesimal probability that X falls in a tiny interval around $x$.
+
+For any measurable function $g$, the **expectation** of function $g$ in probability $P$ is defined as 
+$$
+\mathbb{E}[g(X)]:=\int g(x) d P(x)
+$$
+
+There is a bit confusing notation: $P(x)$ is not a function of single point $x$, $P(\cdot)$ is a measure acts on sets, not points: 
+- $P(\{x\})$ is the probability of the singleton set $\{x\}$
+- $P([a,b])$ is probability that X falls in $[a,b]$
+- $P(A)$ is the probability of event A
+So in $P(x)$, the $x$ is a notation of sets, $P$ is a measure that assigns probabilities to sets.
+
+Another a bit confusing notation: What does $dP(x)$ mean?
+$dP(x)$ is a notation Lebesgue integration, means an infinitesimal "probability element." We can analogy it to the common $dx$ in Riemann integral which represents an infinitesimal "length element." 
+So in $dP(x)$, the $x$ is not the input parameter for $P$, it indicates the variable of integration.
+A more honest notation is:
+$$
+\int g d P\quad \text { or }\quad \int g(x) P(d x)
+$$
+In $\int g(x) P(d x)$, the $x$ in $P(dx)$ represents a single point in the sample space (e.g., a real number in $\mathbb{R}$).
+
+Back to 
+$$
+\mathbb{E}[g(X)]:=\int g(x) d P(x)
+$$
+If $P$ has density $f$, which means there exists a $f$ such that 
+$$
+P(A)=\int_A f(x) d x \quad \text { for all sets } A
+$$
+Then: 
+$$\int g(x) d P(x)=\int g(x) f(x) d x$$
+Note: In $\int g(x) d P(x)$, the first $x$ in $g(x)$ means a single point, but the second $x$ in $P(x)$ means a set, because $P$ is a probability measure. In $\int g(x) f(x) d x$, all the $x$ means a single point.
+
+## Expectation IS Integration
+The connection emerges: expectation is integration against a probability measure. If $X \sim P$ (meaning $X$ is distributed according to $P$ ), then by definition:
+$$
+\mathbb{E}_{X \sim P}[g(X)] {:=} \int g(x) d P(x)
+$$
+If $f$ is a density for probability measure $P$ , then for any measurable $g$ :
+$$
+\int g(x) f(x) d x=\int g(x) P(d x)=\mathbb{E}_{X \sim P}[g(X)]
+$$
+This is a common trick to study intractable integral using probability tools, especially Monte Carlo. (See [[PML brief note-1]] ELBO)
+
+Nice! Then how do we know $f$ is a density? 
+A function $\mathrm{f}: \mathbb{R} \rightarrow \mathbb{R}$ is a valid probability density if and only if:
+1. Non-negativity:
+$$
+f(x) \geq 0 \quad \text { for all } x
+$$
+2. Normalization:
+$$
+\int_{-\infty}^{\infty} f(x) d x=1
+$$
+3. Measurability: this condition almost always satisfied.
+
+A small caveat: All the statements need $g(x)$ to be bounded or well-behaved so $\mathbb{E}[|g(X)|]<\infty$. 
+
+Another small caveat: Density and probability are not one-to-one correspondence: Discrete distributions have no density; when a density exists, it's unique to probability only "almost everywhere."
+
+## What is distribution? 
+Roughly it means probability of random variable $X$. The distribution of a random variable ${X}$ is the probability measure $P_X$ on the target space defined by:
+$$
+P_X(A)=P(X \in A)
+$$
+It tells us how probability is "distributed" across possible values of $X$ .
