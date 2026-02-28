@@ -34,3 +34,5 @@ Nothing new is invented; I mainly focus on explaining and connecting certain con
 [[Yoneda Perspective]]: Yoneda's Lemma, and what it means? 
 
 [[StatisticML-overfitting]]: The basic idea of statistic machine learning and overfitting(unfinished). 
+
+[[Pushforward Pullback]]: How to understand them in differential geometry and probability theory.

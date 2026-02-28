@@ -168,7 +168,7 @@ The left side says: push our velocity to the Earth, then measure the rate of tem
 The pushforward $f_*: T_p M \rightarrow T_{f(p)} N$ is an abstract linear map between tangent spaces. To actually compute it, we need coordinates: a way to label points with numbers. Once we choose coordinates on both manifolds, this linear map is represented by the Jacobian matrix.
 
 
-> Jacobian, differential, pushforward?
+> Jacobian, differential, pushforward.
 
 The Jacobian is just the best linear approximation of $f$ at $p$, expressed as a matrix. The pushforward (differential) is the same thing without committing to coordinates.
 Broadly speaking: the pushforward is the coordinate-free concept; the Jacobian is its matrix representation in a particular coordinate system.
@@ -390,21 +390,106 @@ The Jacobian is the matrix representation of the pushforward in a particular coo
 
 >What is the pullback? 
 
-The pullback $f^*: \Omega^1(N) \rightarrow \Omega^1(M)$ transports forms from $N$ back to $M$, satisfying $\left(f^* \omega\right)_p(v)=\omega_{f(p)}\left(f_* v\right)$. It is dual to the pushforward: vectors go forward, forms come back, and the pairing between them is preserved.
+The pullback $f^*: \Omega^1(N) \rightarrow \Omega^1(M)$ is a map that transports forms from $N$ back to $M$, satisfying $\left(f^* \omega\right)_p(v)=\omega_{f(p)}\left(f_* v\right)$. It is dual to the pushforward: vectors go forward, forms come back, and the pairing between them is preserved.
 
-# Detour: Duality
-#TODO 
+# Continue: Probability space 
+Let's review some probability concepts before defining pushforward in this context.
 
-# Universal property 
-#TODO 
+**Definition**. A probability distribution $p$ on a space $X$ assigns a probability to subsets of $X$ :
+$$
+p: \text { subsets of } X \rightarrow[0,1]
+$$
+with $p(X)=1$ (total probability is 1 ).
 
-# Continue: Pushforward/Pullback in probability space 
-#TODO 
+**Example**. Let $X=\mathbb{R}$. The standard normal distribution $\mathcal{N}(0,1)$ assigns:
+$$
+p([a, b])=\int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 / 2} d x
+$$
+
+**Remark**: In the discrete case, we can also write $p(x)$ for individual points, and these are actual probabilities: $p(x) \in[0,1]$. In the continuous case, $p(x)$ is the density which can be greater than 1. But always $\int p(x) d x=1$.
+
+**Definition**. The expectation of a function $g: X \rightarrow \mathbb{R}$ under a distribution $p$ is the weighted average of $g$, weighted by $p$ :
+$$\mathbb{E}_p[g]=\int_X g(x) \cdot p(x) d x$$
+We can think of this as two functions on the same set $X$ :
+- $p$ assigns a weight to each point
+- $g$ assigns a value to each point
+The expectation $\mathbb{E}_p[g]$ is the weighted average of $g$ 's values, with the weights are $p(x)$.
+
+## Pushforward is a distribution
+
+Given:
+- A probability distribution $p$ on a space $X$
+- A measurable function $f: X \rightarrow Y$
+
+We want to build a distribution on $Y$. But we have no direct knowledge about probabilities on $Y$. We only know:
+1. A distribution on $Y$ must assign a probability to each subset $A \subseteq Y$
+2. The only distribution we have is $p$, which measures subsets of $X$
+3. The only connection between $X$ and $Y$ is $f$
+
+So given a subset $A \subseteq Y$, we map it back to $X$ using preimage $f^{-1}(A)\subseteq X$. Thus we connect distributions in $X$ and $Y$. The distribution of $Y$ calculated in this way is denoted as $f_{\sharp} p$, called pushforward. 
+In mathematical language,
+$$\left(f_{\sharp} p\right)(A)=p\left(f^{-1}(A)\right)$$
 
 
-# Others 
+> We could put any distribution on $Y$. Why is the pushforward special?
+
+Because it is the unique distribution that faithfully represents what actually happens when we apply $f$ to samples from $p$. 
+If we repeatedly sample $x$ from $p$, compute $f(x)$, and record the result, the histogram of results converges to $f_{\sharp} p$. No other distribution on $Y$ has this property. This is the only distribution that correctly describes "sample from $p$, then apply $f$."
+
+>Why call $f_{\sharp} p$ "pushforward"?
+
+Because we are "pushing" the distribution $p$ through the function $f$ from $X$ to $Y$. The result $f_{\sharp} p$ is a distribution on $Y$.
+
+## Pullback in Expectation
+
+In probability, the pullback is the same idea as the 0-form pullback. Given $f: X \rightarrow Y$ and a function $g: Y \rightarrow \mathbb{R}$ :
+$$
+f^* g=g \circ f: X \rightarrow \mathbb{R}
+$$
+If $g$ is an observable on $Y$, then $f^* g$ is the corresponding observable on $X$.
+
+In probability, we can connect pushforward and pullback through expectation:
+$$
+\mathbb{E}_{f_{\sharp} p}[g]=\mathbb{E}_p[g \circ f]=\mathbb{E}_p\left[f^* g\right]
+$$
+The left side says: push the distribution to $Y$, then average $g$ there. The right side says: pull the function back to $X$, then average it under the original distribution. 
+
+This is the associative property! The weighted sum of $g$ in probability $f_{\sharp} p$ is the same as the weighted sum of $g \circ f$ in probability $p$. 
+
+If we think of the distribution $p$ not as a function on points but as a linear functional that eats functions and returns numbers:
+$$
+\begin{aligned}
+& p: C(X) \rightarrow \mathbb{R} \\
+& p(g)=\mathbb{E}_p[g]=\int g d p
+\end{aligned}
+$$
+then $p$ is a measurement device for functions, just as a 1-form $\omega$ is a measurement device for vectors. The expectation equation 
+$$\mathbb{E}_{f_\sharp p}[g]=\mathbb{E}_p\left[f^* g\right]$$
+becomes the probability version of the pairing preservation in differential geometry:
+$$\omega\left(f_* v\right)=\left(f^* \omega\right)(v)$$
+
+However, there is a subtle difference. 
+- In differential geometry we pushforward vector $v \rightarrow f_* v$, which is the thing being measured.
+- In probability theory we pushforward distribution $p \rightarrow f_{\sharp} p$, which is the measurement device. 
+
+This is a genuine difference, not just notation. The fundamental difference is their categorial structure: 
+- A covariant functor sends $f: A \rightarrow B$ to a map $F(f): F(A) \rightarrow F(B)$ 
+- A contravariant functor sends $f: A \rightarrow B$ to a map $F(f): F(B) \rightarrow F(A)$ 
+
+Pushforward is always covariant. Pullback is always contravariant.
+- In differential geometry: vectors are covariant (pushforward), forms are contravariant (pullback)
+- In probability: distributions are covariant (pushforward), functions are contravariant (pullback)
+
+The abstract structure is the same: a covariant functor paired with a contravariant functor, with the pairing preserved, but the roles are swapped.
+
+# Others
+
+Although I introduced these concepts procedurally. We want to linearize manifold -> vector -> we want to transform vector -> differential (pushforward) -> how to calculate -> Jacobian -> we want a measurement of vectors -> form -> we want to transform form -> pullback. But there are no logical chains that first start with a "simple" definition and then extend to "advanced" concepts. They are patterns that exist simultaneously across all of mathematics. We did not invent pushforward because we needed a distribution on $Y$ or a map between tangent spaces. Everything has an appropriate structure; we just use different terms to describe this structure in different contexts.
+
+
+# Similar concepts
 #TODO 
 
 differential, derivative, derivation 
 
-Partial derivative operator, tangent vector, basis. 
+partial derivative operator, tangent vector, basis. 
