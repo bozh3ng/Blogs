@@ -11,7 +11,7 @@ $$
 x=\lambda x_1+(1-\lambda) x_2 \quad \text { with } x_1, x_2 \in S \text { and } \lambda \in(0,1)
 $$
 is if $x_1=x_2=x$. In other words, $x$ cannot be represented as a "nontrivial" mixture of two distinct points in $S$.
-Intuition: any point in convex set can be represented as segment, the extreme point can only be represented as its own segment
+Intuition: any point in a convex set can be represented as a point on a line segment, the extreme point can only be represented as its own segment
 
 ## Examples 
 For any non-zero $a \in \mathbb{R}^n$ and $b \in \mathbb{R}$, the set
@@ -22,10 +22,10 @@ If $n \geq 2$, then they have no extreme points.
 
 The **nonnegative orthant** $\mathbb{R}_{+}^n:=\left\{x \in \mathbb{R}^n: x_i \geq 0\right.$ for $\left.i=1, \ldots, n\right\}$ is a convex cone.
 
-A $n$-dimensional space quadratic forms $x^T A x+b x+c$, where $A \succeq 0$ , is convex.
+The sublevel set $\{x : x^T A x + b^T x + c \leq 0\}$, where $A \succeq 0$, is convex.
 
 A set $S \subseteq \mathbb{R}^n$ is a **cone** if $\lambda \geq 0, x \in S$ implies $\lambda x \in S$.
-Not all cones are convex set 
+Not all cones are convex sets 
 
 The set $S_{+}^n$ (PSD) matrices is a convex cone.
 
@@ -51,7 +51,7 @@ $$
 \end{array}
 $$
 where $c \in \mathbb{R}^n, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ and $y \in \mathbb{R}^m$ is the variable over which the optimization is performed.
-(We can prove this using Lagrange multiplier method) 
+(This can be derived via Lagrange multipliers.) 
 
 ## Weak duality
 For any feasible $x$ in the primal and feasible $y$ in the dual, compare their objective:
@@ -67,6 +67,8 @@ Then they achieve exactly the same optimal value.
 REMARK: Every linear program (that is feasible and bounded) is strong duality
 
 # Semidefinite programming (SDP)
+SDP generalizes LP by replacing the nonnegative orthant $\mathbb{R}_+^n$ with the cone of positive semidefinite matrices $S_+^n$.
+
 **Semidefinite programming** (SDP) is a special kind of convex optimization problem with nice properties.
 It optimizes a linear function over $S_{+}^n$  subject to linear constraints.
 
@@ -83,7 +85,7 @@ $$
 $$
 where $C, A_i \in S^n, b_i \in \mathbb{R}$ and $X \in S^n$ is the variable over which the optimization is performed.
 
-Or 
+Or equivalently (the first form using the trace inner product is standard in optimization theory; the second using a linear matrix inequality is common in control theory):
 
 $$
 \begin{array}{ll}
@@ -106,34 +108,11 @@ $$
 \end{array}
 $$
 
-Example python code using `cvxpy`
-```python
-import cvxpy as cp
-import numpy as np
-
-m = 30
-n = 20
-np.random.seed(1)
-A = np.random.randn(m, n)
-b = np.random.randn(m)
-
-# Construct the problem.
-x = cp.Variable(n)
-objective = cp.Minimize(cp.sum_squares(A @ x - b))
-constraints = [0 <= x, x <= 1]
-prob = cp.Problem(objective, constraints)
-
-# Solve
-result = prob.solve()
-print(x.value)
-print(constraints[0].dual_value)
-```
-
 ## Dual SDP formulation
 $$
 \begin{array}{ll}
 \text { maximize } & b^T y \\
-\text { subject to } & \sum_{i=1}^m A_i y_i \leq C
+\text { subject to } & \sum_{i=1}^m A_i y_i \preceq C
 \end{array}
 $$
 where $C, A_i \in S^n, b_i \in \mathbb{R}$ and $y \in \mathbb{R}^m$ is the variable over which the optimization is performed.
@@ -142,7 +121,7 @@ Example:
 $$
 \begin{array}{ll}
 \text { maximize } & y \\
-\text { subject to } & \left(\begin{array}{cc}2-y & 1 \\ 1 & -y\end{array}\right) \geq 0
+\text { subject to } & \left(\begin{array}{cc}2-y & 1 \\ 1 & -y\end{array}\right) \succeq 0
 \end{array}
 $$
 
@@ -159,8 +138,8 @@ If both the primal and dual problems are strictly feasible, then their optimal s
 
 # Application
 ## Euclidean distance problem
-[[Euclidean Distance Problem]]
-Recall Euclidean distance matrix completion problem. If $D^{(2)}$ misses some data, we cannot use cMDS to find the points.
+[[From Distances to Coordinates(Euclidean)]]
+Recall the Euclidean distance matrix completion problem. If $D^{(2)}$ misses some data, we cannot use cMDS to find the points.
 We can write the entries of a squared distance matrix in terms of Gram matrix:
 $$
 D_{i j}^{(2)}=G_{i i}+G_{j j}-2 G_{i j}
@@ -172,7 +151,7 @@ So the problem becomes
 $$
 \begin{array}{ll}
 \text { find } & \quad G \in S_{+}^n \\
-\text { subject to } & G_{i i}+G_{i j}-2 G_{i j}=D_{i j}^{(2)}\\ 
+\text { subject to } & G_{i i}+G_{j j}-2 G_{i j}=D_{i j}^{(2)}\\ 
 & \sum_{i, j} G_{i j}=0 \\
 & \operatorname{rank}(G)=d
 \end{array}
@@ -182,11 +161,11 @@ The rank condition is not a linear constraint. We need to relax it:
 $$
 \begin{array}{ll}
 \text { find } & \quad G \in S_{+}^n \\
-\text { subject to } & G_{i i}+G_{i j}-2 G_{i j}=D_{i j}^{(2)}\\ 
+\text { subject to } & G_{i i}+G_{j j}-2 G_{i j}=D_{i j}^{(2)}\\ 
 & \sum_{i, j} G_{i j}=0 
 \end{array}
 $$
-This relaxation allows the points move from $\mathbb{R}^d$ to $\mathbb{R}^k$, where $k>d$.
+This relaxation allows the points to embed in $\mathbb{R}^k$ for some $k > d$.
 
 One can apply cMDS to the solution obtained by the SDP relaxation to obtain a solution in $\mathbb{R}^d$. However, the previous SDP does not try to find a solution of low rank.
 
@@ -197,13 +176,13 @@ $$\sum_{i, j=1}^n\left\|x_i-x_j\right\|$$
 And we can prove that 
 $$\sum_{i, j=1}^n\left\|x_i-x_j\right\|=2 n \operatorname{Tr}(G)$$
 REMARK: Often minimize rank $(G)$ is replaced by minimize $\operatorname{Tr}(G)$, which is called the **nuclear norm heuristic**.
-Geometric interpretation of minimizing $\operatorname{Tr}(G)$ is bringing vertices as close together as possible. Intuitively this approach gives high embedding dimension.
+Geometric interpretation of minimizing $\operatorname{Tr}(G)$ is bringing vertices as close together as possible. Conversely, maximizing $\operatorname{Tr}(G)$ pushes points apart, favoring higher embedding dimension.
 
 So now we obtain the following SDP:
 $$
 \begin{array}{ll}
 \text { maximize } & \operatorname{Tr}(G) \\
-\text { subject to } & G_{i i}+G_{i j}-2 G_{i j}=D_{i j}^{(2)}\\ 
+\text { subject to } & G_{i i}+G_{j j}-2 G_{i j}=D_{i j}^{(2)}\\ 
 & \sum_{i, j} G_{i j}=0 \\
 & G \succeq 0
 \end{array}
@@ -275,6 +254,8 @@ $X=x x^T$ and $\operatorname{Tr}(X)=1 \Rightarrow\|X\|_F=1$
 $x \in \mathbb{R}^n, \operatorname{Card}(x)=k \Rightarrow\|x\|_1 \leq \sqrt{k}\|x\|_2$
 $\operatorname{Card}(X) \leq k^2 \Rightarrow \mathbf{1}^T|X| \mathbf{1} \leq k\|X\|_F=k$
 
+This is the matrix analogue of the $\ell_1$ relaxation of the $\ell_0$ constraint in compressed sensing: just as $\|x\|_1 \leq \sqrt{k}\|x\|_2$ holds when $\operatorname{Card}(x) \leq k$ (reverse Cauchy-Schwarz for sparse vectors), the constraint $\mathbf{1}^T|X|\mathbf{1} \leq k$ is a convex surrogate for the combinatorial cardinality bound.
+
 Relaxed SDP for PCA:
 $$
 \begin{array}{ll}
@@ -285,16 +266,18 @@ $$
 \end{array}
 $$
 
-The optimal value to SDP will be an upper bound on the on the optimal value of the variational problem.
+The optimal value to SDP will be an upper bound on the optimal value of the variational problem.
 Let $X_1$ be the solution to SDP and $x_1$ the dominant eigenvector.
 Since we replaced $\operatorname{Card}(X) \leq k^2$ by the relaxed constraint $\mathbf{1}^T|X| \mathbf{1} \leq k$, then we might not have $\operatorname{Card}\left(X_1\right) \leq k^2$ and $\operatorname{Card}\left(x_1\right) \leq k$.
 If  $\operatorname{Card}\left(x_1\right) \geq k$, we can just use "simple thresholding" to set small entries to 0 
 
-Iteration:
+Iteration (deflation):
 - $\Sigma_1=\Sigma$ to find $x_1$
 - $\Sigma_2=\Sigma_1-\left(x_1^T \Sigma_1 x_1\right) x_1 x_1^T$ to find $x_2$
 - ...
-We can add orthogonality constraints $x_i^T X x_i=0$ to the optimization problem for all the previously found sparse principal components $x_1, \ldots, x_k$.
+
+This deflation removes the variance explained by $x_1$, so the next SDP finds the direction of maximum remaining variance.
+We can add orthogonality constraints $x_i^T x_j=0$ for $i \neq j$ to the optimization problem for all the previously found sparse principal components $x_1, \ldots, x_k$.
 
 
 

@@ -22,22 +22,22 @@ possible pairs of birthdays.
 
 When we invite the 23-rd guest, we've created $\binom{23}{2}-\binom{22}{2}=22$ new pairs at once. With 23 people, we have 253 pairs. 
 For any particular pair the chance of a match is $1 / 365 \approx 0.27 \%$.
-Intuitively (this is not the correct answer), we have $253 \times \frac{1}{365} \approx 0.69$ probability that these pairs collision. 
+Intuitively (this is not the correct answer), we have $253 \times \frac{1}{365} \approx 0.69$. But note: this is the _expected number_ of colliding pairs, not a probability. It overestimates because it ignores dependence between pairs (the union bound gives $P \leq 253/365$, but the exact answer is $\approx 0.507$). A cleaner approximation uses the Poisson model: the number of matching pairs is approximately $\text{Poisson}(\binom{n}{2}/365)$, giving $P(\text{at least one match}) \approx 1 - e^{-\binom{n}{2}/365}$.
 
 
 # [Monty Hall problem](https://en.wikipedia.org/wiki/Monty_Hall_problem)
 Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
 
 ## Intuition 1
-We know that $P(car)=\frac{1}{3}$，$P(goat)=\frac{2}{3}$.  What is the probability of winning if we stay $P(\text{stay and win})$ ? 
+We know that $P(car)=\frac{1}{3}$, $P(goat)=\frac{2}{3}$.  What is the probability of winning if we stay $P(\text{stay and win})$ ? 
 If we are in situation $P(car)=\frac{1}{3}$, we stay, we win. 
 If we are in situation $P(goat)=\frac{2}{3}$, we stay, we lose. 
 So $P(\text{stay and win})=\frac{1}{3}$
 
 ## Intuition 2
-Regardless of our initial choice (car or goat), the host can always reveal a goat behind another door. This action is trivial and provides no new information, so our win probability remains unchanged ($\frac{1}{2}$ or $\frac{1}{3}$). 
+Regardless of our initial choice (car or goat), the host can always reveal a goat behind another door. One might argue that this action is trivial and provides no new information, so our win probability remains unchanged ($\frac{1}{2}$ or $\frac{1}{3}$). This reasoning is flawed, as we'll see.
 
-## Case 1  
+## Case 1: Informed Host
 The host—who knows the contents—must open a different door with a goat and must offer the switch. (The host’s action is not random; it’s constrained by the rules.)
 
 Let's build a probability space.  
@@ -98,7 +98,7 @@ $$
 P(T)=\frac{1}{3}, \quad P(S)=\frac{2}{3} .
 $$
 
-## Case 2
+## Case 2: Random Host
 Same as before 
 $C \in\{1,2,3\}$, $P(C=c)=1 / 3$.
 $I \in\{1,2,3\}$, $P(I=i)=1 / 3$.
@@ -151,7 +151,7 @@ And events
 
 $$P_G(E)=P_G(I=1, H=3)=1 / 6$$
 So
-$$\begin{aligned} & P(C=1 \mid E)=\frac{P(C=1, I=1, H=3)}{P(E)}=\frac{1/12}{1/6}=\frac{1}{2}, \\ & P(C=2 \mid E)=\frac{P(C=2, I=1, H=3)}{P(E)}=\frac{1/12}{1/6}=\frac{1}{2} .\end{aligned}$$
+$$\begin{aligned} & P_G(C=1 \mid E)=\frac{P_G(C=1, I=1, H=3)}{P_G(E)}=\frac{1/12}{1/6}=\frac{1}{2}, \\ & P_G(C=2 \mid E)=\frac{P_G(C=2, I=1, H=3)}{P_G(E)}=\frac{1/12}{1/6}=\frac{1}{2} .\end{aligned}$$
 
 Hence 
 $$
@@ -178,13 +178,14 @@ $$P(K \mid G)=\frac{P(G \mid K) q}{P(G \mid K) q+P(G \mid R)(1-q)}=\frac{q}{q+\f
 Set $p^*=P(K \mid G)$ 
 $$\begin{gathered}P(\text { win by switching } \mid G)=p^* \cdot \frac{2}{3}+\left(1-p^*\right) \cdot \frac{1}{2}=\frac{1}{2}+\frac{p^*}{6}, \\ P(\text { win by staying } \mid G)=p^* \cdot \frac{1}{3}+\left(1-p^*\right) \cdot \frac{1}{2}=\frac{1}{2}-\frac{p^*}{6} .\end{gathered}$$
 
-Switching is never worse
+Switching is never worse. When $q = 1$ (certainly informed), $p^* = 1$ and switching wins with probability $2/3$. When $q = 0$ (certainly random), $p^* = 0$ and it's $1/2$. For any mixture, switching dominates.
 
 
+We now turn from probabilistic paradoxes to a foundational paradox in set theory.
 
 # [Russell's paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox)
 Or barber's paradox: The barber is the "one who shaves all those, and those only, who do not shave themselves". The question is, does the barber shave himself?
-This is a self-reference paradox, which leads to inconsistency(something both right and wrong). 
+This is a self-reference paradox, which leads to inconsistency (something that is both true and false). 
 
 ## Recall: Naïve comprehension
 (Naïve comprehension) For every logical property $P(x)$ there exists a set consisting of all things that satisfy $P$. 
@@ -192,7 +193,7 @@ Using set-builder notation:
 $$\{x \mid P(x)\}$$
 Using predicate logic:
 $$\forall P(\exists A \forall x[x \in A \Longleftrightarrow P(x)])$$
-No background set $A$ is needed
+No background set is needed
 
 ### Building Russell’s set
 Take the particular property
@@ -301,7 +302,7 @@ This axiom constrains the behaviors of the membership relation $\in$
 Consequence: $x \notin x$ for all sets $x$. (Apply the axiom to $A=\{x\}$, then we have $x \cap\{x\}=\varnothing$, so $x \notin x$.)
 
 No set can contain itself.  
-If something contains itself, then it is not a set.  
+If something contains itself, then it is not a set. (This is true under ZF with Regularity; in non-well-founded set theory, e.g., Aczel's AFA, sets _can_ contain themselves. The prohibition on self-membership is a consequence of the axioms we choose, not a definition.)  
 But every set is a subset of itself ( $x \subseteq x$ ).  
 There is something "larger" than the set.  
 
@@ -319,12 +320,12 @@ In other words: Regularity does not prevent $R$ from being postulated; it only t
 
 
 # [Banach-Tarski paradox](https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox)
-This paradox is related to Axiom of Choice (AC)
-Note that this paradox does not hold in $\mathbb{R}^2$. This is because $\mathbb{R}^2$ has less symmetries compared to $\mathbb{R}^3$ 
-#TODO 
+The Banach-Tarski paradox states that a solid ball in $\mathbb{R}^3$ can be decomposed into finitely many pieces and reassembled (using only rotations and translations) into two solid balls, each identical to the original. The "pieces" are non-measurable sets whose existence relies on the Axiom of Choice.
+
+Note that this paradox does not hold in $\mathbb{R}^2$. This is because $\mathbb{R}^2$ has less symmetries compared to $\mathbb{R}^3$ (the free group on two generators embeds in $SO(3)$ but not in $SO(2)$).
 
 ## Axiom of Choice (AC)
-Intuition: If we have an infinite family $\left\{X_i\right\}_{i \in I}$, ZF alone cannot guarantee even existence of an element of $\prod_{i \in I} X_i$. The construction may stall forever. AC gives a choice function $f(i) \in X_i$ for each $X_i$ that we can do simultaneously.
+Intuition: If we have an infinite family $\left\{X_i\right\}_{i \in I}$ of nonempty sets, ZF alone cannot prove that $\prod_{i \in I} X_i$ is nonempty. (The product as a set of functions exists by ZF; the question is whether it is inhabited.) The construction of a choice function may stall forever. AC gives a choice function $f(i) \in X_i$ for each $X_i$ that we can do simultaneously.
 Roughly, AC let us commute from "finite" data to a total object that may live at a higher cardinality.
 
 ## Example usage of AC
@@ -344,33 +345,5 @@ with $x(i) \in X_i$.
 
 If $I$ is infinite, even if every $X_i$ is not empty, without AC, the Cartesian product not necessary to be non-empty 
 
-We need AC to prove Tychonoff theorem 
-
-### A small quiz 
-Proof: Second countable is Lindelöf 
-Recall 
-Second countable: countable basis 
-Lindelöf: any open cover has countable subcover 
-Let $X$ be second countable, so there exists a basis 
-$$\mathcal{B}=\bigcup_{i=1}^{\infty} B_i$$
-Choose any cover $\mathcal{C}$ of $X$
-$$\mathcal{C}=\bigcup_{I} C_j$$
-$j$ might be uncountable
-$C_j$ is open, so for $\forall C_j, \exists B_i$ such that 
-$$B_i\subset C_j$$
-(AC): Choose one $C_k$ from every $C_j$ such that 
-$$B_i\subset C_k$$
-Collect them as $\{C_k\}$ which is countable
-Next we argue that $\{C_k\}$ is a subcover for any cover of $X$
-For $\forall x\in X$, because basis, 
-$$\exists B_i\in\mathcal{B}\quad s.t.\quad x\in B_i$$
-Also 
-$$B_i\subset C_k$$
-So $\{C_k\}$ covers all $x$
-We can choose any cover $\mathcal{C}=\bigcup C_j$
-So $X$ is Lindelöf
-
-
-
-
+We need AC to prove Tychonoff theorem.
 

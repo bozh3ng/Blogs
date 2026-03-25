@@ -5,28 +5,28 @@ $$
 $$
 So $df / dx$ is the limit of the ratio $\Delta f / \Delta x$. In a sense, "d" is the infinitesimal version of  "$\Delta$". So "dx" means "an infinitely small piece of x".
 
-But next let me strenuously introduce a differential geometry perspective. Why? Because it is more fundamental, it reflects the cognitive model: what is the intrinsic truth we believe? How do we describe it? 
+But next let me rigorously introduce a differential geometry perspective. Why? Because it is more fundamental, it reflects the cognitive model: what is the intrinsic truth we believe? How do we describe it? 
 
 # The differential geometry perspective
-The general idea: $dx$ is a function that can represent tangent vectors in x-coordinate. $dx(v)$ is a representation of $v$ in x-coordinate. 
+The general idea: $dx$ is a 1-form that extracts the $x$-component of a tangent vector. $dx(v)$ gives the components of $v$ in the $x$-coordinate system. In $\mathbb{R}^n$ with standard coordinates, $dx_i$ is literally the projection onto the $i$-th coordinate -- the simplest possible case that grounds the abstraction.
 
 First we define $x$ as a function: 
 $$x:\Omega\rightarrow \mathbb{R}^n.$$
 
-There are many ways to understand it. For example, if $x$ is smooth, the image of $x$ is a manifold. Here we view $x$ as a coordinate map. 
+There are many ways to interpret this. Here we view $x$ as a coordinate map (a diffeomorphism from $\Omega$ onto an open subset of $\mathbb{R}^n$). 
 
 $x:\Omega\rightarrow \mathbb{R}^n$ is a coordinate map assigns to each point $p \in \Omega$ an n-tuple of real numbers:
 $$
 p \mapsto\left(x_1(p), x_2(p), \ldots, x_n(p)\right)
 $$
 
-We can think that $x$ describe $\Omega$ using $n$ real numbers, but these numbers are independent, so $x$ is a n-dimensional coordinate of $\Omega$. 
+We can think that $x$ describe $\Omega$ using $n$ real numbers, but these numbers are independent, so $x$ is an $n$-dimensional coordinate of $\Omega$. 
 
 Then we define $v$ as a tangent vector at point $p\in\Omega$. 
 
 Let's take our general idea a step further: $dx$ is a function whose input is $v$ and output is $n$ real numbers : $[dx_1(v),dx_2(v),dx_3(v)\cdots dx_n(v)]$. Each $dx_i(v)$ is a component of $dx(v)$. 
 
-Recall that a vector contains both speed (scalar) and direction. Here $v$ is a geometric object that exists intrinsically on the manifold, it is coordinate-independent. $dx(v)$ is a representation of this object $v$ using $x$-coordinate. 
+Recall that a vector encodes both magnitude (a scalar) and direction. Here $v$ is a geometric object that exists intrinsically on the manifold; it is coordinate-independent. $dx(v)$ is a representation of this object $v$ using the $x$-coordinates. 
 
 Because $x$ is a coordinate, we introduce the notation ${\partial}/{\partial x_i}$ as the tangent vector pointing the $x_i$ direction. Geometrically, for example, $\partial / \partial x_1$ represents the velocity of a curve where only $x_1$ is changing:
 $$
@@ -35,7 +35,7 @@ $$
 The tangent vector to this curve is $\partial / \partial x_1$.
 
 Back to the general idea: $dx(v)$ is a representation of $v$ in x-coordinate. How do we represent $v$ using $dx(v)$? 
-We use tangent vector ${\partial}/{\partial x_i}$ as the basis (it's feasible because each $x_i$ is independent),  component $dx_i(v)$ as the coefficient. 
+We use tangent vector ${\partial}/{\partial x_i}$ as the basis (it's feasible because the $\partial/\partial x_i$ are linearly independent),  component $dx_i(v)$ as the coefficient. 
 
 Remember $dx(v)$ is a representation of $v$, their information content is the same. The vector $v$ and its components $[dx_1(v),dx_2(v),dx_3(v)\cdots dx_n(v)]$ contain equivalent information. We can reconstruct $v$ from its components:
 $$
@@ -43,6 +43,8 @@ v=d x_1(v) \frac{\partial}{\partial x_1}+d x_2(v) \frac{\partial}{\partial x_2}+
 $$
 
 Here, $dx_i(v)$ is the speed of $v$ in $x_i$ component, ${\partial}/{\partial x_i}$ is the direction of $v$ in $x_i$ component.
+
+The basis 1-forms $\{dx_i\}$ are dual to the basis tangent vectors $\{\partial/\partial x_j\}$: $dx_i(\partial/\partial x_j) = \delta_i^j$. This duality is the same one that appears in the pushforward/pullback correspondence.
 
 Recall $v$ is an intrinsic vector, so it's coordinate-independent; if $f$ is a (smooth) function, $v[f]$ means the speed (scalar, real number) of $f$ if we move along $v$, it's called the directional derivative of $f$ along $v$. Another notation of $v[f]$ is $df(v)$, they are exactly the same meaning. 
 
@@ -70,6 +72,8 @@ $$
 d f=f^{\prime}(x) d x
 $$
 
+For multivariable functions, this generalizes to $df = \sum_i (\partial f/\partial x_i) \, dx_i$, which is exactly the multivariable chain rule expressed in the language of differential forms.
+
 ## An example
 For example, $f=x^2+y^3$, in this case $f$ is a smooth map:
 $$f:\mathbb{R}^2\rightarrow\mathbb{R}$$
@@ -92,9 +96,9 @@ Apply $v$
 $$
 d f(v)=4 \cdot d x(v)+27 \cdot d y(v)=4(1)+27(2)=58
 $$
-It means: in $\mathbb{R}^2$ space has a function $f=x^2+y^3$, at the point $p=(2,3)\in\mathbb{R}^2$, if we move along the vector $v=1 \partial / \partial x+2 \partial / \partial y$, the function $f$ changes at rate 58.
+It means: in $\mathbb{R}^2$, for the function $f = x^2 + y^3$, at the point $p=(2,3)\in\mathbb{R}^2$, if we move along the vector $v=1 \partial / \partial x+2 \partial / \partial y$, the function $f$ changes at a rate of 58.
 
-# Caveat in calculus: 
+# Why $df = f'(x)\,dx$ is not a cancellation
 In informal calculus, people write things like:
 $$
 \frac{d y}{d x}=f^{\prime}(x) \quad \Rightarrow \quad d y=f^{\prime}(x) d x
@@ -107,14 +111,14 @@ By definition
 $$\left(\frac{d f}{d x}\right)\cdot dx=df$$
 Thus 
 $$df=f^\prime(x)dx$$
-Why do this? Because $f^{\prime}(x)(v)$ is undefined.
+The deeper point: $df$ and $dx$ are both 1-forms, and $f'(x)$ is the scalar function relating them. The "$\cdot$" in $f'(x) \cdot dx$ is scalar multiplication of a 1-form, not division of differentials.
+
+Why do this? Because $f^{\prime}(x)$ is a scalar, not a 1-form, so it cannot directly act on a vector. We need $df=f^\prime(x)dx$ to get a 1-form that can.
 Now we can apply both sides to a vector $v$:
 $$
 d y(v)=f^{\prime}(x) \cdot d x(v)
 $$
 to calculate the changing rate of $f$ in vector $v$. 
-
-
 
 
 

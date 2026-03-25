@@ -1,63 +1,63 @@
-We work in the context of differential geometry. Roughly speaking, pushforward and pullback describe how to transport geometric objects (vectors, functions, forms) between manifolds using smooth maps. Pushforward transports objects "forward" along a map, pullback brings them "back" against it. 
+We work in the context of differential geometry. Roughly speaking, pushforward and pullback describe how to transport geometric objects (vectors, functions, forms) between manifolds using smooth maps. Pushforward transports objects "forward" along a map, pullback brings them "back" against it.
 
-# Pre: Vector  
-At the most basic level, a vector is an element of a vector space, a set in which we can add and scale elements. But this abstract definition doesn't tell us what a vector **looks like**. Most of the time, we think of vectors in concrete pictures used in different contexts.  
+# Pre: Vector
+At the most basic level, a vector is an element of a vector space, a set in which we can add and scale elements. But this abstract definition doesn't tell us what a vector **looks like**. Most of the time, we think of vectors through concrete pictures that depend on context.
 
-## Arrow  
+## Arrow
 This is the most intuitive picture. A vector is an arrow with a direction and magnitude. In $\mathbb{R}^n$, the vector $(2,3)$ is an arrow pointing from the origin in the direction $(2,3)$ with length $\sqrt{13}$.
 
-But this picture is not always available. Sometimes we want an intrinsic definition that does not depend on ambient space. If an object (e.g., a manifold) is defined abstractly, without an ambient space, vectors (e.g., tangent vectors) should still exist. The arrow picture breaks down because there is no surrounding space for the arrows to point into.
+But this picture is not always available. Sometimes we need an intrinsic definition that does not depend on an ambient space. If an object (e.g., a manifold) is defined abstractly, without an ambient space, vectors (e.g., tangent vectors) should still exist. The arrow picture breaks down because there is no surrounding space for the arrows to point into.
 
-## Equivalence class of curves  
-Technically speaking, a tangent vector at $p$ is an equivalence class of curves passing through $p$ with the same velocity. Two curves $\gamma_1, \gamma_2: \mathbb{R} \rightarrow M$ with $\gamma_1(0)=\gamma_2(0)=p$ represent the same tangent vector if, in any coordinate chart, they have the same derivative at $t=0$ :  
-$$  
-\left.\frac{d}{d t}\left(\phi \circ \gamma_1\right)\right|_{t=0}=\left.\frac{d}{d t}\left(\phi \circ \gamma_2\right)\right|_{t=0}  
+## Equivalence class of curves
+Technically speaking, a tangent vector at $p$ is an equivalence class of curves passing through $p$ with the same velocity. Two curves $\gamma_1, \gamma_2: \mathbb{R} \rightarrow M$ with $\gamma_1(0)=\gamma_2(0)=p$ represent the same tangent vector if, in any coordinate chart, they have the same derivative at $t=0$ :
+$$
+\left.\frac{d}{d t}\left(\phi \circ \gamma_1\right)\right|_{t=0}=\left.\frac{d}{d t}\left(\phi \circ \gamma_2\right)\right|_{t=0}
 $$
 
 The intuition: a direction at $p$ is determined by all the curves that "leave $p$ the same way." No single curve is the vector - the whole equivalence class is.
 
 This definition is intrinsic and geometric, but algebraically awkward: defining addition and scalar multiplication of equivalence classes requires extra work.
 
-## Derivation (function on functions)  
-We can also define a vector as a function. A tangent vector at $p$ is a linear $\operatorname{map} v: C^{\infty}(M) \rightarrow \mathbb{R}$ satisfying the Leibniz rule. As we will see, it acts on functions by computing directional derivatives.
+## Derivation (function on functions)
+We can also define a vector as a function. A tangent vector at $p$ is a linear $\operatorname{map} v: C^{\infty}(M) \rightarrow \mathbb{R}$ satisfying the Leibniz rule. As we will see, it acts on smooth functions by computing directional derivatives.
 
 This definition is intrinsic and algebraically clean, but requires accepting a less intuitive idea: a vector eats functions and returns a scalar.
 
 All three pictures are formally equivalent (we omit the proof).
 
-# Pre: Tangent vector  
+# Pre: Tangent vector
 We use the derivation picture to define tangent vectors.
 
-**Definition**. Let $M$ be a smooth manifold and $C^{\infty}(M)$ the set of all smooth functions $M \rightarrow \mathbb{R}$. A tangent vector $v \in T_p M$ at a point $p$ is a linear map $v: C^{\infty}(M) \rightarrow \mathbb{R}$ that satisfies the Leibniz rule: for any $g, h \in C^{\infty}(M)$,  
-$$  
-v(g h)=v(g) \cdot h(p)+g(p) \cdot v(h) .  
+**Definition**. Let $M$ be a smooth manifold and $C^{\infty}(M)$ the set of all smooth functions $M \rightarrow \mathbb{R}$. A tangent vector $v \in T_p M$ at a point $p$ is a linear map $v: C^{\infty}(M) \rightarrow \mathbb{R}$ that satisfies the Leibniz rule: for any $g, h \in C^{\infty}(M)$,
+$$
+v(g h)=v(g) \cdot h(p)+g(p) \cdot v(h) .
 $$
 
 (**Remark**: The Leibniz rule forces vector be the first derivative.)
 
-Two things follow immediately:  
-1. A tangent vector is always anchored to a specific point $p$. The tangent space $T_p M$ is the collection of all tangent vectors at that point.  
+Two things follow immediately:
+1. A tangent vector is always anchored to a specific point $p$. The tangent space $T_p M$ is the collection of all tangent vectors at that point.
 2. A tangent vector is a function - it takes a smooth function (with codomain $\mathbb{R}$) as input and returns a real number.
 
 >How to think of a vector as a function that acts on functions?
 
-Think of $g: M \rightarrow \mathbb{R}$ not as an abstract function but as a measurement on $M$, for instance, the temperature at each point on the Earth's surface. A tangent vector $v \in T_p M$ encodes a direction of motion at $p$. Then $v(g)$ answers the question: "if I start at $p$ and move in direction $v$, how fast does the temperature change?" The output is a single number: a rate of change.  
+Think of $g: M \rightarrow \mathbb{R}$ not as an abstract function but as a measurement on $M$, for instance, the temperature at each point on the Earth's surface. A tangent vector $v \in T_p M$ encodes a direction of motion at $p$. Then $v(g)$ answers the question: "if I start at $p$ and move in direction $v$, how fast does the temperature change?" The output is a single number: a rate of change.
 In $v(g)$, the vector $v$ is not an arrow; it is an encoding of directional information. The direction is fully determined by knowing the rate of change of *every* smooth function along it.
 
 >Why use this encoding?
 
 We seek intrinsic definitions, i.e., definitions that depend only on the manifold itself, not on a choice of ambient space.
 
-This reflects a deep idea: duality. There are often two complementary ways to describe the same object.  
-- Direct description (what it is): a vector is an "arrow" in space.  
+This reflects a deep idea: duality. There are often two complementary ways to describe the same object.
+- Direct description (what it is): a vector is an "arrow" in space.
 - Indirect description (how other objects interact with it): a vector is determined by the rates of change it assigns to all possible functions.
 
-Neither description is more "real"; they carry the same information. 
+Neither description is more "real"; they carry the same information.
 
 **Remark**: This duality is about **representation**, not the same duality between tangent vectors and forms.
 
-**Example**. Consider a single point in $\mathbb{R}^2$, say $(3,2)$. There are two ways to characterize this point:  
-- Direct description: specify the point by its coordinates $(3,2)$.  
+**Example**. Consider a single point in $\mathbb{R}^2$, say $(3,2)$. There are two ways to characterize this point:
+- Direct description: specify the point by its coordinates $(3,2)$.
 - Indirect description: specify the point by how every linear functional acts on it. The functional $( 1,0 )$ returns 3. The functional $( 0,1 )$ returns 2. The functional $( 1,1 )$ returns 5. The collection of all these answers uniquely determines the point.
 
 In category theory, this principle, that an object is determined by how all other objects map into (or out of) it, is formalized as the Yoneda lemma(check [[Yoneda Perspective]]).
@@ -66,24 +66,24 @@ In category theory, this principle, that an object is determined by how all othe
 
 The Leibniz rule $v(g h)=v(g) \cdot h(p)+g(p) \cdot v(h)$ uses multiplication and addition of real numbers. If $g$ mapped into an arbitrary manifold $N$ instead of $\mathbb{R}$, these operations would not be defined: you cannot multiply two points on a manifold.
 
->What if we have a smooth map $f: M \rightarrow N$ between manifolds and want to know "how tangent vectors on $M$ relate to tangent vectors on $N$"? 
+>What if we have a smooth map $f: M \rightarrow N$ between manifolds and want to know "how tangent vectors on $M$ relate to tangent vectors on $N$"?
 
 We cannot write $v(f)$, because $f$ is not real-valued. This is exactly where the pushforward comes in: instead of $v$ acting on $f$, we use $f$ to transport $v$ itself from $T_p M$ to $T_{f(p)} N$. As we will see, when $N=\mathbb{R}$, this reduces to the simple case of $v$ acting on a function: the pushforward $f_* v$ is a tangent vector in $T_{f(p)} \mathbb{R} \cong \mathbb{R}$, which is just the number $v(f)$.
 
 # Pre: Differential
 Some related [[What is dx?]].
 ## Single-variable calculus
-We have a (possibly nonlinear) function $f: \mathbb{R} \rightarrow \mathbb{R}$ and a point $p$.  
-Based on $f$ and $p$, we build a new, separate linear function called the differential at $p$ :  
-$$  
-\begin{aligned}  
-d f_p: \mathbb{R} \rightarrow \mathbb{R} \  
-h \mapsto f^{\prime}(p) \cdot h  
-\end{aligned}  
-$$  
-Its input $h$ is a perturbation from $p$, its output $f^{\prime}(p) \cdot h$ is a perturbation from $f(p)$. The number $f^{\prime}(p)$ (called the derivative) defines the best linear approximation:  
-$$  
-f(p+h) \approx f(p)+f^{\prime}(p) \cdot h  
+We have a (possibly nonlinear) function $f: \mathbb{R} \rightarrow \mathbb{R}$ and a point $p$.
+Based on $f$ and $p$, we build a new, separate linear function called the differential at $p$ :
+$$
+\begin{aligned}
+d f_p: \mathbb{R} \rightarrow \mathbb{R} \
+h \mapsto f^{\prime}(p) \cdot h
+\end{aligned}
+$$
+Its input $h$ is a perturbation from $p$, its output $f^{\prime}(p) \cdot h$ is a perturbation from $f(p)$. The number $f^{\prime}(p)$ (called the derivative) defines the best linear approximation:
+$$
+f(p+h) \approx f(p)+f^{\prime}(p) \cdot h
 $$
 
 So the derivative $f^{\prime}(p)$ is a number, and the differential $d f_p$ is the linear map "multiply by that number." In single-variable calculus, they are the same thing.
@@ -106,25 +106,25 @@ In $\mathbb{R}^m$, we write $p+h$ since addition is defined. On a manifold, addi
 
 > How to apply a perturbation $h$ to a point $p$ on a manifold?
 
-The tangent space $T_p M$ is exactly the space of infinitesimal displacements at $p$; it captures all directions we could move from $p$. So $T_p M$ replaces $\mathbb{R}^m$ as the domain of the differential, and $T_{f(p)} N$ replaces $\mathbb{R}^n$ as the codomain:  
-$$  
-d f_p: T_p M \rightarrow T_{f(p)} N  
-$$  
+The tangent space $T_p M$ is exactly the space of infinitesimal displacements at $p$; it captures all directions we could move from $p$. So $T_p M$ replaces $\mathbb{R}^m$ as the domain of the differential, and $T_{f(p)} N$ replaces $\mathbb{R}^n$ as the codomain:
+$$
+d f_p: T_p M \rightarrow T_{f(p)} N
+$$
 But not just any linear map, the differential is the unique linear map satisfying the condition $\left(d f_p(v)\right)(g)=v(g \circ f)$, which is the intrinsic reformulation of "best linear approximation".
 
 # Pushforward
 ## What is it?  - The Differential
-**Definition**. Given a smooth map $f: M \rightarrow N$, the pushforward at a point $p \in M$ is a linear map between tangent spaces:  
-$$  
-f_*: T_p M \rightarrow T_{f(p)} N  
+**Definition**. Given a smooth map $f: M \rightarrow N$, the pushforward at a point $p \in M$ is a linear map between tangent spaces:
 $$
-Not just any linear map, it is the unique linear map satisfying:  
-$$  
-\left(f_* v\right)(g)=v(g \circ f)  
+f_*: T_p M \rightarrow T_{f(p)} N
+$$
+Not just any linear map, it is the unique linear map satisfying:
+$$
+\left(f_* v\right)(g)=v(g \circ f)
 $$
 for all $v \in T_p M$ and all smooth $g: N \rightarrow \mathbb{R}$.
 
-Let’s unpack all the objects in this equation:
+Let's unpack all the objects in this equation:
 - $f: M \rightarrow N$ is a smooth map between manifolds
 - $v \in T_p M$ is a tangent vector at $p$
 - $f_*: T_p M \rightarrow T_{f(p)} N$ is the pushforward
@@ -134,16 +134,16 @@ Let’s unpack all the objects in this equation:
 
 The left side asks: what is the rate of change of $g$ in the direction $f_* v$ on $N$ ? The right side answers: it equals the rate of change of $g \circ f$ in the direction $v$ on $M$.
 
-Consequence: The pushforward is exactly the differential at $p$ :  
-$$  
-f_*=d f_p: T_p M \rightarrow T_{f(p)} N  
+Consequence: The pushforward is exactly the differential at $p$ :
+$$
+f_*=d f_p: T_p M \rightarrow T_{f(p)} N
 $$
 
 > Why are they the same?
 
 They describe the same linear map from two perspectives:
 - "Differential" emphasizes: it is the generalization of the derivative to manifolds - the best linear approximation of $f$ at $p$, acting on infinitesimal displacements.
-- "Pushforward" emphasizes: it transports tangent vectors from $M$ to $N$ along $f$ - a vector at $p$ gets "pushed forward" to a vector at $f(p)$.  
+- "Pushforward" emphasizes: it transports tangent vectors from $M$ to $N$ along $f$ - a vector at $p$ gets "pushed forward" to a vector at $f(p)$.
 The "best linear approximation" has the same format as "pushforward": $\left(d f_p(v)\right)(g)=v(g \circ f)$.
 
 **Example (Computation)**. Let $f: \mathbb{R} \rightarrow \mathbb{R}^2$ with $f(t)=\left(t^2, t^3\right)$. Let $v=\left.\frac{d}{d t}\right|_{t=1}$ and $g(x, y)=x+y$.
@@ -162,7 +162,7 @@ If $g: M \rightarrow \mathbb{R}$ is the temperature function, then:
 $$
 f_*\left(\frac{d}{d t}\right)(g)=\frac{d}{d t}(g \circ f)
 $$
-The left side says: push our velocity to the Earth, then measure the rate of temperature change in that direction. The right side says: just differentiate temperature-along-the-trail with respect to time. 
+The left side says: push our velocity to the Earth, then measure the rate of temperature change in that direction. The right side says: just differentiate temperature-along-the-trail with respect to time.
 
 ## How to calculate it? - Jacobian
 The pushforward $f_*: T_p M \rightarrow T_{f(p)} N$ is an abstract linear map between tangent spaces. To actually compute it, we need coordinates: a way to label points with numbers. Once we choose coordinates on both manifolds, this linear map is represented by the Jacobian matrix.
@@ -235,15 +235,15 @@ So $f_* w=4 \frac{\partial}{\partial x}+5 \frac{\partial}{\partial y}+9 \frac{\p
 A form can be understood as a measurement for vectors. It eats vectors and returns a real number.
 
 ## 0-form
-A 0-form eats zero tangent vectors; it just returns a number at each point. This is simply a function:  
-$$  
-g: M \rightarrow \mathbb{R}  
+A 0-form eats zero tangent vectors; it just returns a number at each point. This is simply a function:
+$$
+g: M \rightarrow \mathbb{R}
 $$
 
 ## 1-form
-A 1-form eats one tangent vector and returns a number:  
-$$  
-\omega_p: T_p M \rightarrow \mathbb{R}  
+A 1-form eats one tangent vector and returns a number:
+$$
+\omega_p: T_p M \rightarrow \mathbb{R}
 $$
 It is a linear map from the tangent space to $\mathbb{R}$. Given a direction, it returns a measurement of that direction.
 
@@ -251,34 +251,33 @@ On $\mathbb{R}^n$ with coordinates $\left(x^1, \ldots, x^n\right)$, the basis 1-
 $$
 d x^i\left(\frac{\partial}{\partial x^j}\right)=\delta_j^i= \begin{cases}1 & \text { if } i=j \\ 0 & \text { if } i \neq j\end{cases}
 $$
-The 1-form $d x^i$ asks: "what is the $x^i$-component of the vector?" 
+The 1-form $d x^i$ asks: "what is the $x^i$-component of the vector?"
 
-A general 1-form is a linear combination:  
-$$  
-\omega=b_1 d x^1+\cdots+b_n d x^n  
+A general 1-form is a linear combination:
 $$
-And it acts on a tangent vector $v=a^1 \frac{\partial}{\partial x^1}+\cdots+a^n \frac{\partial}{\partial x^n}$ by:  
-$$  
-\omega(v)=\sum_i b_i a^i  
+\omega=b_1 d x^1+\cdots+b_n d x^n
+$$
+And it acts on a tangent vector $v=a^1 \frac{\partial}{\partial x^1}+\cdots+a^n \frac{\partial}{\partial x^n}$ by:
+$$
+\omega(v)=\sum_i b_i a^i
 $$
 This is just a dot product between $\left(b_1, \ldots, b_n\right)$ and $\left(a^1, \ldots, a^n\right)^T$.
 
-The simplest 1-form is differential. Given a function $g: M \rightarrow \mathbb{R}$, its differential $d g$ is a 1-form defined by:  
-$$  
-d g(v)=v(g)  
+The simplest 1-form is differential. Given a function $g: M \rightarrow \mathbb{R}$, its differential $d g$ is a 1-form defined by:
 $$
-(Isn’t this familiar and natural?)  
-In coordinates:  
-$$  
-d g=\sum_i \frac{\partial g}{\partial x^i} d x^i  
+d g(v)=v(g)
+$$
+In coordinates:
+$$
+d g=\sum_i \frac{\partial g}{\partial x^i} d x^i
 $$
 
 For example, if $g(x, y)=x^2+y$, then $d g=2 x d x+d y$.
 
 ## 2-form
-A 2-form eats two tangent vectors and returns a number:  
-$$  
-\omega_p: T_p M \times T_p M \rightarrow \mathbb{R}  
+A 2-form eats two tangent vectors and returns a number:
+$$
+\omega_p: T_p M \times T_p M \rightarrow \mathbb{R}
 $$
 with two key properties:
 1. Linear in each input
@@ -286,22 +285,22 @@ with two key properties:
 
 A 1-form measures something along a line (one direction). A 2-form measures something across a surface (two directions). Specifically, it measures the oriented area of the parallelogram spanned by two tangent vectors.
 
-We will not dig deeper into this.
+We won't pursue this further here.
 
 # Pullback
-We introduce the pullback with 0-forms and 1-forms.  
+We introduce the pullback with 0-forms and 1-forms.
 The pullback goes in the opposite direction of $f$. Given $f: M \rightarrow N$, the pullback $f^*$ transports forms from $N$ back to $M$.
 
 ## Pullback on 0-forms
-The simplest case. A 0-form on $N$ is just a function $g: N \rightarrow \mathbb{R}$. The pullback is precomposition:  
-$$  
-f^* g=g \circ f: M \rightarrow \mathbb{R}  
-$$  
+The simplest case. A 0-form on $N$ is just a function $g: N \rightarrow \mathbb{R}$. The pullback is precomposition:
+$$
+f^* g=g \circ f: M \rightarrow \mathbb{R}
+$$
 If $g$ measures temperature on $N$, then $f^* g$ measures "the temperature at wherever $f$ sends you" on $M$.
 
-**Example**. Let $f: \mathbb{R}^2 \rightarrow \mathbb{R}^3$ with $f(s, t)=\left(s^2, s t, t^3\right)$ and $g(x, y, z)=x+2 y+z$:  
-$$  
-f^* g=g \circ f(s, t)=s^2+2 s t+t^3  
+**Example**. Let $f: \mathbb{R}^2 \rightarrow \mathbb{R}^3$ with $f(s, t)=\left(s^2, s t, t^3\right)$ and $g(x, y, z)=x+2 y+z$:
+$$
+f^* g=g \circ f(s, t)=s^2+2 s t+t^3
 $$
 
 ## Pullback on 1-forms
@@ -317,7 +316,7 @@ $$
 \left(f^* \omega\right)_p(v)=\omega_{f(p)}\left(f_* v\right)
 $$
 
-Let’s unpack this equation:
+Let's unpack this equation:
 - $v \in T_p M$ is a tangent vector on $M$
 - $f_* v \in T_{f(p)} N$ is its pushforward to $N$
 - $\omega_{f(p)}$ is the 1-form $\omega$ evaluated at $f(p)$, which eats tangent vectors on $N$
@@ -355,7 +354,7 @@ There is a clear correspondence between pushforward and pullback:
 
 > Why does a tangent vector correspond to a 1-form? Why does $T_p M$ correspond to $\Omega^1(N) ?$
 
-Because they are **dual** to each other. A tangent vector is a direction; a 1-form is a measurement of a direction. They pair together to produce a number: $\omega(v) \in \mathbb{R}$.  
+Because they are **dual** to each other. A tangent vector is a direction; a 1-form is a measurement of a direction. They pair together to produce a number: $\omega(v) \in \mathbb{R}$.
 The duality means two complementary descriptions of the same geometry, it forces:
 - If a vector go forward ( $M \rightarrow N$ via $f_*$ )
 - Then its form must come back ( $N \rightarrow M$ via $f^*$ )
@@ -364,7 +363,7 @@ The duality means two complementary descriptions of the same geometry, it forces
 Remark: This duality is about **complementarity**.
 
 # Halftime break
->What is a vector? 
+>What is a vector?
 
 In differential geometry, a vector at a point $p$ is a linear map $v$ : $C^{\infty}(M) \rightarrow \mathbb{R}$ satisfying the Leibniz rule. It encodes directional information: feed it a function, it returns the rate of change of that function in its direction.
 
@@ -380,19 +379,19 @@ A $k$-form eats $k$ tangent vectors and returns a number. A 1 -form is dual to a
 
 The differential of a smooth map $f: M \rightarrow N$ at a point $p$ is a linear map $d f_p: T_p M \rightarrow T_{f(p)} N$. It is the best linear approximation of $f$ at $p$, acting on infinitesimal displacements.
 
->What is the pushforward? 
+>What is the pushforward?
 
 The pushforward $f_*: T_p M \rightarrow T_{f(p)} N$ is the same map as the differential. It satisfies $\left(f_* v\right)(g)=v(g \circ f)$. "Differential" emphasizes linear approximation; "pushforward" emphasizes transporting vectors from $M$ to $N$.
 
->What is the Jacobian? 
+>What is the Jacobian?
 
 The Jacobian is the matrix representation of the pushforward in a particular coordinate system. The pushforward is coordinate-free; the Jacobian is what you get when you choose coordinates.
 
->What is the pullback? 
+>What is the pullback?
 
 The pullback $f^*: \Omega^1(N) \rightarrow \Omega^1(M)$ is a map that transports forms from $N$ back to $M$, satisfying $\left(f^* \omega\right)_p(v)=\omega_{f(p)}\left(f_* v\right)$. It is dual to the pushforward: vectors go forward, forms come back, and the pairing between them is preserved.
 
-# Continue: Probability space 
+# Continue: Probability space
 Let's review some probability concepts before defining pushforward in this context.
 
 **Definition**. A probability distribution $p$ on a space $X$ assigns a probability to subsets of $X$ :
@@ -426,14 +425,14 @@ We want to build a distribution on $Y$. But we have no direct knowledge about pr
 2. The only distribution we have is $p$, which measures subsets of $X$
 3. The only connection between $X$ and $Y$ is $f$
 
-So given a subset $A \subseteq Y$, we map it back to $X$ using preimage $f^{-1}(A)\subseteq X$. Thus we connect distributions in $X$ and $Y$. The distribution of $Y$ calculated in this way is denoted as $f_{\sharp} p$, called pushforward. 
+So given a subset $A \subseteq Y$, we map it back to $X$ using preimage $f^{-1}(A)\subseteq X$. Thus we connect distributions in $X$ and $Y$. The distribution of $Y$ calculated in this way is denoted as $f_{\sharp} p$, called pushforward.
 In mathematical language,
 $$\left(f_{\sharp} p\right)(A)=p\left(f^{-1}(A)\right)$$
 
 
 > We could put any distribution on $Y$. Why is the pushforward special?
 
-Because it is the unique distribution that faithfully represents what actually happens when we apply $f$ to samples from $p$. 
+Because it is the unique distribution that faithfully represents what actually happens when we apply $f$ to samples from $p$.
 If we repeatedly sample $x$ from $p$, compute $f(x)$, and record the result, the histogram of results converges to $f_{\sharp} p$. No other distribution on $Y$ has this property. This is the only distribution that correctly describes "sample from $p$, then apply $f$."
 
 >Why call $f_{\sharp} p$ "pushforward"?
@@ -452,9 +451,9 @@ In probability, we can connect pushforward and pullback through expectation:
 $$
 \mathbb{E}_{f_{\sharp} p}[g]=\mathbb{E}_p[g \circ f]=\mathbb{E}_p\left[f^* g\right]
 $$
-The left side says: push the distribution to $Y$, then average $g$ there. The right side says: pull the function back to $X$, then average it under the original distribution. 
+The left side says: push the distribution to $Y$, then average $g$ there. The right side says: pull the function back to $X$, then average it under the original distribution.
 
-This is the associative property! The weighted sum of $g$ in probability $f_{\sharp} p$ is the same as the weighted sum of $g \circ f$ in probability $p$. 
+This is the change of variables formula (also called the transfer theorem or image measure theorem). The weighted sum of $g$ in probability $f_{\sharp} p$ is the same as the weighted sum of $g \circ f$ in probability $p$.
 
 If we think of the distribution $p$ not as a function on points but as a linear functional that eats functions and returns numbers:
 $$
@@ -463,33 +462,25 @@ $$
 & p(g)=\mathbb{E}_p[g]=\int g d p
 \end{aligned}
 $$
-then $p$ is a measurement device for functions, just as a 1-form $\omega$ is a measurement device for vectors. The expectation equation 
+then $p$ is a measurement device for functions, just as a 1-form $\omega$ is a measurement device for vectors. The expectation equation
 $$\mathbb{E}_{f_\sharp p}[g]=\mathbb{E}_p\left[f^* g\right]$$
 becomes the probability version of the pairing preservation in differential geometry:
 $$\omega\left(f_* v\right)=\left(f^* \omega\right)(v)$$
 
-However, there is a subtle difference. 
+However, there is a subtle difference.
 - In differential geometry we pushforward vector $v \rightarrow f_* v$, which is the thing being measured.
-- In probability theory we pushforward distribution $p \rightarrow f_{\sharp} p$, which is the measurement device. 
+- In probability theory we pushforward distribution $p \rightarrow f_{\sharp} p$, which is the measurement device.
 
-This is a genuine difference, not just notation. The fundamental difference is their categorial structure: 
-- A covariant functor sends $f: A \rightarrow B$ to a map $F(f): F(A) \rightarrow F(B)$ 
-- A contravariant functor sends $f: A \rightarrow B$ to a map $F(f): F(B) \rightarrow F(A)$ 
+This is a genuine difference, not just notation. The fundamental difference is their categorial structure:
+- A covariant functor sends $f: A \rightarrow B$ to a map $F(f): F(A) \rightarrow F(B)$
+- A contravariant functor sends $f: A \rightarrow B$ to a map $F(f): F(B) \rightarrow F(A)$
 
 Pushforward is always covariant. Pullback is always contravariant.
 - In differential geometry: vectors are covariant (pushforward), forms are contravariant (pullback)
-- In probability: distributions are covariant (pushforward), functions are contravariant (pullback)
+- In probability: distributions are covariant (pushforward), functions are contravariant (pullback). The functor $X \mapsto \text{Prob}(X)$ that sends $f: X \to Y$ to $f_\sharp: \text{Prob}(X) \to \text{Prob}(Y)$ is known as the probability monad.
 
-The abstract structure is the same: a covariant functor paired with a contravariant functor, with the pairing preserved, but the roles are swapped.
+The abstract structure is the same: a covariant functor paired with a contravariant functor, with the pairing preserved. But the roles are swapped: in differential geometry, the "measurement device" (1-form) is contravariant, so the "thing being measured" (vector) is covariant. In probability, the "measurement device" (distribution) is covariant, so the "thing being measured" (observable/function) is contravariant. The swap happens because distributions pair with functions the same way vectors pair with 1-forms -- but distributions live on the "vector side" of the duality.
 
 # Others
 
-Although I introduced these concepts procedurally. We want to linearize manifold -> vector -> we want to transform vector -> differential (pushforward) -> how to calculate -> Jacobian -> we want a measurement of vectors -> form -> we want to transform form -> pullback. But there are no logical chains that first start with a "simple" definition and then extend to "advanced" concepts. They are patterns that exist simultaneously across all of mathematics. We did not invent pushforward because we needed a distribution on $Y$ or a map between tangent spaces. Everything has an appropriate structure; we just use different terms to describe this structure in different contexts.
-
-
-# Similar concepts
-#TODO 
-
-differential, derivative, derivation 
-
-partial derivative operator, tangent vector, basis. 
+Although I introduced these concepts procedurally. We want to linearize manifold -> vector -> we want to transform vector -> differential (pushforward) -> how to calculate -> Jacobian -> we want a measurement of vectors -> form -> we want to transform form -> pullback. But there is no logical chain starting from "simple" definitions and building to "advanced" ones. They are patterns that exist simultaneously across all of mathematics. We did not invent the pushforward because we needed a distribution on $Y$ or a map between tangent spaces. Everything has an appropriate structure; we just use different terms to describe this structure in different contexts.
