@@ -1,9 +1,7 @@
 # A category theory perspective: what models really are
 
-
 *Part 4 of 4, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]], [[1_Distilled/publish/Thesis/Part2-GroupStructure|Part2-GroupStructure]], [[1_Distilled/publish/Thesis/Part3-PathEquivariance|Part3-PathEquivariance]]*
 
-TODOs: add figures and experiments
 
 ---
 

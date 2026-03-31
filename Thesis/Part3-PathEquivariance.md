@@ -2,13 +2,14 @@
 
 *Part 3 of 4, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]], [[1_Distilled/publish/Thesis/Part2-GroupStructure|Part2-GroupStructure]]*
 
-TODOs: add figures and experiments
 
 ---
 
 The previous article showed how group theory formalizes the prior knowledge in neural networks: each component reduces a symmetry group, and the residual group tells us what the model assumes. But that framework has a limitation. It only talks about *points*. Classical equivariance says: "if I act on input $x$ by group element $g$, the output should change accordingly." It relates isolated points in data space that are connected by a group action. It says nothing about what happens *between* those points, nothing about continuous trajectories through data space, and nothing about trajectories that no group action describes.
 
 Real data has richer structure than groups alone can capture. Data lives on manifolds, curved spaces where nearby points are related not by a single global action but by continuous variation. Or these transformations are not group actions at all. The question is not just "which actions are irrelevant?" but "how should representations change as we move continuously through the data space?" This is what path equivariance answers, and it is the core contribution of my thesis.
+
+The key insight of PENs is that equivariance isn't a single global constraint — it's a _local_ constraint that must be maintained coherently along paths through the data/network.
 
 ---
 
@@ -41,6 +42,8 @@ The intuition: as the input walks along a path $\gamma$, the output doesn't jump
 The idea is intuitive and the formula is clean, but making it rigorous requires care: the path system must satisfy closure properties (reparametrization, concatenation), the transport must be continuous and compatible with composition, and the relationship between path equivariance and classical equivariance involves topological arguments about endpoint conditions and holonomy. The full technical development, including proofs, can be found in the thesis.
 
 This is a strictly more general notion than classical equivariance. A classical G-equivariant map is automatically path equivariant for paths induced by the group action: if $\gamma(t) = g(t) \cdot x$ traces an orbit, then $a_\gamma(t) = \rho(g(t))$. But path equivariance can also handle paths that have nothing to do with any group: paths through content space, paths across different data manifolds, paths that no global symmetry relates.
+
+![[SCR-20260326-rzdh.png]]
 
 ---
 
@@ -117,6 +120,8 @@ Every data point decomposes uniquely as $x = g \cdot c(u)$: a content $u$ at a c
 $$\mathcal{L}_{\text{smooth}} = \int \left\|\frac{d}{dt} F(c(\gamma_U(t)))\right\|^2 dt$$
 
 This asymmetry (hard constraints for pose, soft constraints for content) is not a design choice. It is a consequence of the mathematics. Pose lives in a group; content does not. The path equivariance framework makes this distinction precise and explains *why* certain invariances can be built into architectures (translation equivariance in CNNs) while others must be learned through training (similarity between different objects).
+
+![[SCR-20260326-rzeu.png]]
 
 ---
 

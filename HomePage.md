@@ -9,7 +9,7 @@ Nothing new is invented; I mainly focus on explaining and connecting certain con
 
 [[AbstractAlgebra-1]]: Groups, rings, fields -- each built by adding one axiom to the last. The impossibility of dividing by zero follows from the ring axioms alone. The Euclidean algorithm is then explained through the ideal-theoretic structure of $\mathbb{Z}$.
 
-[[Category Product]]: The categorical product is defined by a universal property with arrows pointing toward the factors. The reversed-arrow diagram defines the coproduct instead -- two arguments show they are genuinely different constructions.
+[[Category Product]]: The categorical product is defined by a universal property with arrows pointing toward the factors. Two arguments show why this construction.
 
 [[From Distances to Coordinates(Euclidean)]]: Recovering point coordinates from pairwise distances via SVD and classical multidimensional scaling. Covers the geometry of linear maps, PSD matrices, and the double-centering trick.
 
@@ -33,6 +33,8 @@ Nothing new is invented; I mainly focus on explaining and connecting certain con
 
 [[Pushforward Pullback]]: Pushforward and pullback in differential geometry and probability theory. The same covariant-contravariant duality, but with the roles of "thing measured" and "measurement device" swapped -- distributions are covariant (the probability monad), observables are contravariant.
 
+[[TheWorldFromWithinAndOut]]: The intrinsic and extrinsic perspectives, take gravity for example.
+
 In dir Thesis:
 
 [[Part1-PriorKnowledge]]: Every neural network component -- architecture, activation, regularization -- encodes a structural assumption about the problem before training begins. Prior knowledge constrains the model to a subspace of function space; if the prior is correct, the model searches a smaller space with less data and better generalization. This article frames the series: groups, manifolds, and categories are the formal languages for describing what is being transferred and how.
@@ -42,3 +44,5 @@ In dir Thesis:
 [[Part3-PathEquivariance]]: Classical group equivariance relates isolated points via group actions but says nothing about continuous variation through data space. Path equivariance generalizes this: $F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0))$, requiring representations to evolve coherently along paths. The content-pose decomposition via principal bundles explains the hard/soft constraint asymmetry -- pose lives in a group (hard constraints, weight sharing), content does not (soft constraints, smoothness regularization). The hierarchy from classical to homotopy to full path equivariance measures how much geometric structure the network respects.
 
 [[Part4-CategoryTheoryPerspective]]: Equivariance is naturality. A $G$-equivariant layer is a natural transformation between functors from $\mathbf{B}G$ to the category of representations. This identification is not merely linguistic: composition of natural transformations gives equivariance of deep networks for free, and invariant pooling is a categorical limit with a universal property. The series unifies under one principle: a model is a functor, a good layer is a natural transformation, and the design of a neural network is the choice of which structure to preserve.
+
+[[Part5-PENHolonomyandSingleTangentFallacy]]: Path equivariance, holonomy, the single tangent fallacy, how are they related. 
