@@ -1,11 +1,14 @@
 Recall Yoneda Lemma: For any functor $F: \mathbf{C} \rightarrow\mathbf{Set}$, whose domain $\mathbf{C}$ is locally small and any object $c \in \mathrm{C}$, there is a bijection  
+
 $$  
 \operatorname{Nat}(\mathbf{C}(c,-), F) \cong F c  
 $$  
 that associates a natural transformation $\alpha: \mathbf{C}(c,-) \Rightarrow F$ to the element $\alpha_c\left(1_c\right) \in F c$. Moreover, this correspondence is natural in both $c$ and $F$.
 
 This equation contains more information than it first appears. Surprisingly, the content is quite intuitive.
+
 # What it means? 
+
 $F: \mathbf{C} \rightarrow\mathbf{Set}$ is **any** (covariant) functor on $\mathbf{C}$
 $\mathbf C(c,-):\mathbf C\to\mathbf{Set}$ is the representable functor at $c\in \mathbf{C}$. It sends an object $x$ to the hom-set $\mathbf{C}(c, x)$ and an arrow $g$ : $x \rightarrow y$ to the post-composition map $g \circ-: \mathbf{C}(c, x) \rightarrow$ $\mathbf{C}(c, y)$
 $\operatorname{Nat}(\mathbf{C}(c,-), F)$ is the set of natural transformations $\alpha$ : $\mathbf{C}(c,-) \Rightarrow F$, each element is a family of functions $\alpha_x: \mathbf{C}(c, x) \rightarrow F x$ that is natural in $x$.

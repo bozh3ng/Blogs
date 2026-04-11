@@ -1,7 +1,5 @@
 
-*Intrinsic and extrinsic perspectives in mathematics, physics, and philosophy*
-
-(This idea is surprisingly prevalent)  
+*Brief introduction to intrinsic and extrinsic perspectives*
 
 ---
 
@@ -15,19 +13,19 @@ What follows is a tour of this idea. I start from a confusion I had when I was a
 
 ## Sailing around the world
 
-In 1522, the remnants of Magellan's expedition completed the first circumnavigation of the globe. They had demonstrated that the Earth is not "flat" — you can go all the way around.
+In 1522, the remnants of Magellan's expedition completed the first circumnavigation of the globe. They had demonstrated that the Earth is not "flat" (technically closed in at least one direction) — you can go all the way around.
 
-![[Magellan_Elcano_Circumnavigation-en.svg]]
+![[file-20260409162156959.svg]]
 
-But this doesn't prove the Earth is a sphere! How do we know we're not living on a donut? The easiest (maybe not) way to determine this is to take a picture from space. But obviously people had already determined the shape of the Earth before that. Not by Magellan's expedition, then by what? 
+But this doesn't prove the Earth is a sphere! How do we know we're not living on a donut? The easiest (maybe not) way to determine this is to take a picture from space. But obviously people had already determined the shape of the Earth before that. If not by circumnavigation, then how?
 
 Unfortunately, the answer to this question is not as easy as it looks, and we are not prepared to discuss it here.
 
-But it's definitely doable, even though we don't introduce how yet. Taking a picture from space and traveling on the surface of the Earth are equivalent ways to know our Earth, corresponding to extrinsic and intrinsic. They both have the full ability to describe an (not necessarily geometric) object.  
+But it's definitely doable, even though we don't introduce how yet. Taking a picture from space and traveling on the surface of the Earth are equivalent ways to know our Earth, corresponding to extrinsic and intrinsic. They both have the full ability to describe an object (not necessarily geometric).  
 
 ## Intrinsic and Extrinsic
 
-Extrinsic lives with ambient space. "Ambient" just means "surrounding." An ambient space is just a larger space that an object fits in. For example we put a sphere in a 3D Euclidean space so we can parameterize it. The extrinsic view needs ambient space, and it is contingent on the ambient. 
+Extrinsic lives with ambient space. "Ambient" just means "surrounding." An ambient space is just a larger space that an object fits in. For example we put a sphere in a 3D Euclidean space so we can parameterize it. The extrinsic view needs ambient space, contingent on the choice of ambient space. 
 
 But one fact we must accept: an object exists by itself, ambient space is not necessary for the existence of an object. A sphere is always a sphere whether we put it in 3D Euclidean space, or a distorted high-dimensional space, or no space at all. This is the view of intrinsic. 
 
@@ -43,8 +41,26 @@ Einstein replaced this entirely with an *intrinsic* picture. In general relativi
 
 In this picture, gravity is not a force. Objects in free fall, including light, follow geodesics: the straightest possible paths through curved spacetime. Light curving near a star is not being "pulled" off a straight line. It is traveling as straight as it possibly can. The apparent bending is an artifact of projecting a curved geometry onto flat expectations. There is a famous quote by John Archibald Wheeler "Matter tells spacetime how to curve, spacetime tells matter how to move."
 
-![[file-20260330220745226.png]]
+![[file-20260409162156961.png]]
 
+
+## Two pictures of kernel 
+
+In machine learning, given two points $x,y$, the kernel $k(x,y)$ measures how correlated the function values $f(x)$ and $f(y)$ are. If $k(x, y)$ is large: knowing $f(x)$ tells you a lot about $f(y)$ . If $k(x, y)$ is near zero: $f(x)$ and $f(y)$ are roughly independent.
+Sometimes the kernel itself has some contraints. For example in Gaussian Process context, the kernel must be covariance function, $k(x,y)=\operatorname{cov}(f(x), f(y))$ . Because the kernel defines the joint Gaussian distribution over function values.
+
+The usual distance-based formula of SE kernel 
+$k(x, y)=\sigma^2 \exp \left(-\|x-y\|^2 / 2 \ell^2\right)$
+is an extrinsic view. This relies on measuring distance between pairs of points
+
+$C(x, y):=\operatorname{cov}(Z(x), Z(y))=\mathbb{E}[(Z(x)-\mathbb{E}[Z(x)])(Z(y)-\mathbb{E}[Z(y)])]$.
+
+Operator-based definition (intrinsic): $e^{-\frac{\kappa^2}{4} \Delta} f=\mathcal{W}$
+This defines the kernel through a differential operator acting on the space itself. The Laplacian is defined purely from the local geometry - it doesn't need distances between pairs of points or any embedding into $\mathbb{R}^n$. It only needs the metric tensor at each point.
+
+So the extrinsic view asks "how far apart are these two points?" while the intrinsic view asks "what does smoothing look like on this space?" Both give the same kernel on $\mathbb{R}^n$, but the intrinsic view generalizes to any Riemannian manifold because the Laplace-Beltrami operator is always well-defined from the metric alone.
+
+This parallels the gradient story from earlier - the Euclidean gradient is an extrinsic object, but $\operatorname{grad} f=G^{-1} \partial f$ redefines it intrinsically through the metric, making it generalizable to any manifold.
 ## Coda
 
 Modern mathematics has decisively embraced the intrinsic viewpoint as foundational. A Riemannian manifold is defined by its metric, not by any embedding. Spacetime in general relativity has no ambient space. The intrinsic perspective is more general and more honest about what the geometry actually depends on.

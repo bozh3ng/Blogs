@@ -1,3 +1,6 @@
+
+Future me will need this when I lost the intuition about conditional independence, or Bayesian Networks. 
+
 # 1. Bayesian Network
 
 Bayesian Network(**BN**) is composed of Directed Acyclic Graph (**DAG**) and Conditional Probability Tables (**CPT**)

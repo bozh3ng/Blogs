@@ -1,6 +1,6 @@
 # Path equivariance: from groups to geometry
 
-*Part 3 of 4, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]], [[1_Distilled/publish/Thesis/Part2-GroupStructure|Part2-GroupStructure]]*
+*Part 3 of 5, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]], [[1_Distilled/publish/Thesis/Part2-GroupStructure|Part2-GroupStructure]]*
 
 
 ---

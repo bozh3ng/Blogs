@@ -3,7 +3,7 @@
 - $\pi_1:P \rightarrow A$ and $\pi_2:P \rightarrow B$ are two morphisms (called projections) in $\mathcal{C}$
 such that the following universal property holds:
 For all objects $X$ in $\mathcal{C}$ and for all pairs of morphisms $f:X\rightarrow A$ and $g:X\rightarrow B$ , there exists a unique morphism $h: X \rightarrow P$ such that the diagram
-![[file-20251101200333551.png]]
+![[file-20251101200333551.png|707]]
 commutes
 
 This definition is more informative than it looks. Here is my attempt at an explanation. 
@@ -20,13 +20,13 @@ In fact, the universal property says precisely that $\mathrm{Hom}(X, A \times B)
 
 Now we connect $A$ and $B$ uniquely, which is $P$, but what is the direction of the arrow between $A$ (or $B$ ) and $P$? One can argue that the direction $\pi_1:P \rightarrow A$ is given by definition, but this is not the only feasible definition. By duality, there exists a coproduct with reversed arrows: $\iota_1: A \to P$, $\iota_2: B \to P$. In $\mathbf{Set}$, the product is the Cartesian product while the coproduct is the disjoint union -- they are genuinely different constructions. In this case, we characterize $A$ and $B$ using their out-arrows, and $\iota_1:A \rightarrow P$ also needs to be reversed. Why does the projection direction depend on how we characterize objects? In other words, why this diagram 
 
-![[file-20251101203753170.png]]
+![[file-20251101203753170.png|588]]
 is not a correct definition? 
 
 Argument 1: Assume that $P$ makes this diagram commute, then $P$ is the product we want. If we set $P$ as the initial object, the initial object has a unique morphism to every object, so this reversed diagram would be satisfied trivially. But this gives the wrong answer: in $\mathbf{Set}$, the product of two non-empty sets cannot be empty.  
 
 Argument 2: $\pi_1$ and $f$ are not in general unique, so in this case
-![[file-20251101204803846.png]]
+![[file-20251101204803846.png|591]]
 By composition, there would exist a morphism $P\rightarrow X$, but it need not be unique, violating the universal property. So this candidate fails. 
 
 In fact, the reversed-arrow diagram is precisely the definition of the coproduct. The question "why isn't this the product?" becomes "why aren't products and coproducts the same?" In general categories, they differ: in $\mathbf{Set}$, the product is the Cartesian product $A \times B$ while the coproduct is the disjoint union $A \sqcup B$. The two constructions coincide only in special settings (e.g., finite biproducts in $\mathbf{Ab}$).

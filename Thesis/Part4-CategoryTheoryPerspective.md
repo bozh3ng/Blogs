@@ -2,6 +2,7 @@
 
 *Part 4 of 4, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]], [[1_Distilled/publish/Thesis/Part2-GroupStructure|Part2-GroupStructure]], [[1_Distilled/publish/Thesis/Part3-PathEquivariance|Part3-PathEquivariance]]*
 
+In this section we use category theory to formalize and unify the prior knowledge, group structure, and path equivariance frameworks from the preceding parts. Although highly abstract, the categorical perspective is surprisingly clear: it gives a name to all the structures we have been building. A model is a functor, and a good model is one whose layers are natural transformations. The equivariance conditions we have discussed throughout are instances of naturality -- the same commuting square, in different guises. This gives us a high-level language for reasoning about what a model preserves and what it discards.
 
 ---
 
@@ -108,4 +109,4 @@ And naturality is just a commuting square: act then map equals map then act. Eve
 
 ---
 
-*This concludes the four-part series based on the thesis "Exploring the Structure in Deep Networks: Group, Manifold and Category Theory" (Aalto University, 2025).*
+*This concludes the five-part series based on the thesis "Exploring the Structure in Deep Networks: Group, Manifold and Category Theory" (Aalto University, 2025).*

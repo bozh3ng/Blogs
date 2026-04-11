@@ -1,3 +1,5 @@
+(This article needs to be polished; the idea is correct, but the explanation is unnecessarily complex.)
+
 # The calculus perspective: dx and $\Delta x$ 
 This is a direct and well-known perspective. $\Delta x$ is a finite change in x. $dx$ is an infinitesimal change in x. If we accept limit(infinite), the derivative definition:
 $$
@@ -8,14 +10,12 @@ So $df / dx$ is the limit of the ratio $\Delta f / \Delta x$. In a sense, "d" is
 But next let me rigorously introduce a differential geometry perspective. Why? Because it is more fundamental, it reflects the cognitive model: what is the intrinsic truth we believe? How do we describe it? 
 
 # The differential geometry perspective
-The general idea: $dx$ is a 1-form that extracts the $x$-component of a tangent vector. $dx(v)$ gives the components of $v$ in the $x$-coordinate system. In $\mathbb{R}^n$ with standard coordinates, $dx_i$ is literally the projection onto the $i$-th coordinate -- the simplest possible case that grounds the abstraction.
+The general idea: $dx$ is a 1-form that extracts the $x$-component of a tangent vector. $dx(v)$ gives the components of $v$ in the $x$-coordinate system. In $\mathbb{R}^n$ with standard coordinates, $dx_i$ is literally the projection onto the $i$-th coordinate where $i\in \{n\}$.
 
-First we define $x$ as a function: 
+Firstly, we need to clarify that $x$ is not number but defined as a function :
 $$x:\Omega\rightarrow \mathbb{R}^n.$$
 
-There are many ways to interpret this. Here we view $x$ as a coordinate map (a diffeomorphism from $\Omega$ onto an open subset of $\mathbb{R}^n$). 
-
-$x:\Omega\rightarrow \mathbb{R}^n$ is a coordinate map assigns to each point $p \in \Omega$ an n-tuple of real numbers:
+There are many ways to interpret this. Here we view $x$ as a coordinate map (a diffeomorphism from $\Omega$ onto an open subset of $\mathbb{R}^n$). A coordinate map assigns to each point $p \in \Omega$ an n-tuple of real numbers:
 $$
 p \mapsto\left(x_1(p), x_2(p), \ldots, x_n(p)\right)
 $$

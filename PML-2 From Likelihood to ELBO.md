@@ -1,7 +1,5 @@
 We explain the basic idea of probabilistic machine learning: data are drawn from a distribution, and machine learning learns this distribution.
 
-Off-topic: I strongly recommend learning some measure theory before probability theory, or we might risk deep confusion. But most undergraduate curricula introduce probability from a frequentist or Bayesian perspective, which is intuitive and makes people feel it is close to reality, but (as with all mathematics), probability theory is highly abstract.
-
 # Notation
 
 Define **sample space** as the set of all possible outcomes, denoted as $\Omega$. Define the measure $(\Omega, \mathcal{F}, P)$
@@ -330,7 +328,8 @@ $$
 \max _{\theta, \phi} \operatorname{ELBO}(\theta, \phi ; y)
 $$
 
-## In practice
+## Methodology
+
 Recall the ELBO formula:
 $$
 \operatorname{ELBO}(\theta, \phi ; y)=\mathbb{E}_{q_\phi(x \mid y)}\left[\log p_\theta(y \mid x)\right]-D_{K L}\left(q_\phi(x \mid y) \| p(x)\right)
@@ -414,7 +413,14 @@ The main issue is that we are integrating target variable.
 We hope the integration can be written as expectation, then expectation can be approximated by Monte Carlo.
 
 ### Reparameterization trick
-The problem: $\phi$ appears in the distribution we're sampling from ($q_\phi$), so we can't differentiate through the sampling. The solution: reparameterize so that $\phi$ appears only in a deterministic transformation of a fixed noise distribution.
+
+This is a really smart and elegant idea. 
+
+What can we usually do with a distribution? We sample a point from it. But this "sample" operation is really confusing—how do we do it? Ideally, the sampled element should preserve all information about its distribution, so we know this point is truly sampled from the correct distribution, not randomly generated. Another issue is that, in machine learning, we need to update the parameters of the distribution using this sampled point. How can we achieve that?
+
+The problem: $\phi$ appears in the distribution we're sampling from ($q_\phi$), so we can't differentiate through the sampling. 
+
+The solution: reparameterize so that $\phi$ appears only in a deterministic transformation of a fixed noise distribution.
 
 In mathematics, we constantly use different perspectives to view identical objects. For example, $q_\phi(x \mid y)$ is both a function of $x$ with codomain $[0,\infty)$, and also a distribution $\mathcal{N}\left(\mu_\phi(y), \sigma_\phi^2(y)\right)$ with parameter $\phi$. The value of the function $q_\phi$ gives $x$, is identical to,  the probability of sampling $x$ from the distribution $q_\phi$.
 
@@ -491,8 +497,4 @@ We can make joint gradient descent . In each gradient step:
 Thus we can learn $\phi$ and $\theta$ simultaneously.
 
 Note: In this case two parameters cooperate (both improve the same goal), it looks like EM algorithm but actually not. An adversarial case is GAN where two parameters against each other.
-
-
->Why maximize likelihood instead of posterior? 
-
 

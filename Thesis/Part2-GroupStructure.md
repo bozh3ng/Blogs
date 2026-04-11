@@ -1,6 +1,6 @@
 # The group structure: a type of formalized prior knowledge
 
-*Part 2 of 4, following [Part 1: Every model is a hypothesis](/blog_01_prior_knowledge)*
+*Part 2 of 5, following [[1_Distilled/publish/Thesis/Part1-PriorKnowledge|Part1-PriorKnowledge]]*
 
 Code can be found in https://github.com/bozh3ng/ThesisExp part2_group_structure.
 

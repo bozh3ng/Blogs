@@ -9,6 +9,7 @@ While a Bayesian would say, "We don't know the probability at the beginning; we 
 
 They both intuitively make sense, but again, what does it mean for something to happen with a given probability? If I were told I have a 0.4 probability of passing an exam and can attend it only once, then either I pass it or I don't. What does it mean that I can pass it with probability 0.4? There is no such thing as 0.4 of a diploma. I will take the exam anyway, and I either pass or fail, what is the difference to me between 0.9 and 0.1 probability of passing?
 
+The fact is that the probability (or distribution) has its own meaning, but we cannot just use sampled points to represent it. **It's not only the sampled points that matter, but also how they are obtained.** We may not be able to distinguish whether these points are sampled from the true distribution or from a totally unrelated one. A better perspective is the  [[PML-2 From Likelihood to ELBO]] Reparameterization trick.
 
 # 2. (Discrete) Probability
 
@@ -185,7 +186,7 @@ If $f$ is a density for probability measure $\mathbb{P}$ , then for any measurab
 $$
 \int g(x) f(x) \, d x=\int g(x) \, \mathbb{P}(d x)=\mathbb{E}_{X \sim \mathbb{P}}[g(X)]
 $$
-This is a common trick to study intractable integral using probability tools, especially Monte Carlo. (See [[PML - From Likelihood to ELBO]] ELBO)
+This is a common trick to study intractable integral using probability tools, especially Monte Carlo. (See [[PML-2 From Likelihood to ELBO]] ELBO)
 
 Nice! Then how do we know $f$ is a density?
 A function $\mathrm{f}: \mathbb{R} \rightarrow \mathbb{R}$ is a valid probability density if and only if:
