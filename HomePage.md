@@ -45,6 +45,8 @@ In dir Thesis:
 
 [[Part3-PathEquivariance]]: Classical group equivariance relates isolated points via group actions but says nothing about continuous variation through data space. Path equivariance generalizes this: $F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0))$, requiring representations to evolve coherently along paths. We also introduce content-pose decomposition via principal bundles, where pose is a hard constraint lives in a group, can be implemented by for example weight sharing, content is a soft constraint does not live in group, can be implemented by for example smoothness regularization. The hierarchy from classical to homotopy to full path equivariance measures how much geometric structure the network respects.
 
+[[Part3.5-PERecoveryProof]] : A complete and self-contained proof of the PEN recovery theorem: classical group equivariance is recovered from path equivariance under a natural condition on path endpoints.
+
 [[Part4-CategoryTheoryPerspective]]: Equivariance is naturality. A $G$-equivariant layer is a natural transformation between functors from $\mathbf{B}G$ to the category of representations. This identification is not merely linguistic: composition of natural transformations gives equivariance of deep networks for free, and invariant pooling is a categorical limit with a universal property. The series unifies under one principle: a model is a functor, a good layer is a natural transformation, and the design of a neural network is the choice of which structure to preserve.
 
 [[Part5-PENHolonomyandSingleTangentFallacy]]: Path equivariance, holonomy, the single tangent fallacy, how are they related. 

@@ -1,6 +1,6 @@
 *Part 1 of 5*
 
-# Prior knowledge - what we believe
+# What we believe
 
 The conversation around neural networks often starts with training. Loss functions, gradient descent, convergence: the machinery that turns data into predictions. But by the time training begins, the interesting decisions have already been made. How many layers, which activation, what regularization, what architecture at all. Every one of these choices encodes a belief about the problem, and every belief is a form of knowledge injected before the model has seen a single example.
 
