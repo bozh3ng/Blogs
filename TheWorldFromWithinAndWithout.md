@@ -46,25 +46,54 @@ In this picture, gravity is not a force. Objects in free fall, including light, 
 
 ## Two pictures of kernel 
 
-In machine learning, given two points $x,y$, the kernel $k(x,y)$ measures how correlated the function values $f(x)$ and $f(y)$ are. If $k(x, y)$ is large: knowing $f(x)$ tells you a lot about $f(y)$ . If $k(x, y)$ is near zero: $f(x)$ and $f(y)$ are roughly independent.
-Sometimes the kernel itself has some contraints. For example in Gaussian Process context, the kernel must be covariance function, $k(x,y)=\operatorname{cov}(f(x), f(y))$ . Because the kernel defines the joint Gaussian distribution over function values.
+In machine learning, given two points $x, y$, a kernel $k(x, y)$ measures how correlated the function values $f(x)$ and $f(y)$ are. If $k(x, y)$ is large, knowing $f(x)$ tells us a lot about $f(y)$. If $k(x, y)$ is near zero, $f(x)$ and $f(y)$ are roughly independent.
 
-The usual distance-based formula of SE kernel 
-$k(x, y)=\sigma^2 \exp \left(-\|x-y\|^2 / 2 \ell^2\right)$
-is an extrinsic view. This relies on measuring distance between pairs of points
+In the Gaussian Process context, a kernel must be a covariance function, which is equivalent to saying a kernel must be symmetric positive semi-definite (PSD). Choosing a kernel is choosing what kind of distribution we assume before seeing data. For example, the squared exponential (SE) kernel assumes that nearby points are highly correlated and the correlation decays smoothly like a Gaussian bell curve. A widely-used SE kernel formula is
 
-$C(x, y):=\operatorname{cov}(Z(x), Z(y))=\mathbb{E}[(Z(x)-\mathbb{E}[Z(x)])(Z(y)-\mathbb{E}[Z(y)])]$.
+$$
+k(x, y)=\sigma^2 \exp \left(-\frac{\|x-y\|^2}{2 \ell^2}\right)
+$$
 
-Operator-based definition (intrinsic): $e^{-\frac{\kappa^2}{4} \Delta} f=\mathcal{W}$
-This defines the kernel through a differential operator acting on the space itself. The Laplacian is defined purely from the local geometry - it doesn't need distances between pairs of points or any embedding into $\mathbb{R}^n$. It only needs the metric tensor at each point.
+where $\sigma^2$ controls how much $f$ varies overall, and $\ell$ controls how quickly the correlation decays with distance. They are hyperparameters. 
 
-So the extrinsic view asks "how far apart are these two points?" while the intrinsic view asks "what does smoothing look like on this space?" Both give the same kernel on $\mathbb{R}^n$, but the intrinsic view generalizes to any Riemannian manifold because the Laplace-Beltrami operator is always well-defined from the metric alone.
+But what does $\|x-y\|^2$ mean? It is the squared Euclidean distance.
 
-This parallels the gradient story from earlier - the Euclidean gradient is an extrinsic object, but $\operatorname{grad} f=G^{-1} \partial f$ redefines it intrinsically through the metric, making it generalizable to any manifold.
-## Coda
+So when we write this formula, we implicitly use the flat Euclidean metric as the measure of similarity. 
 
-Modern mathematics has decisively embraced the intrinsic viewpoint as foundational. A Riemannian manifold is defined by its metric, not by any embedding. Spacetime in general relativity has no ambient space. The intrinsic perspective is more general and more honest about what the geometry actually depends on.
+But recall what a kernel means: it measures how correlated $f(x)$ and $f(y)$ are. It says nothing about distance or space. Naturally, we can try to use kernels on other spaces, for example on a Riemannian manifold, by replacing the Euclidean distance with the geodesic distance:
 
-But when we need to calculate, to visualize, to connect abstract structures to concrete experience, we reach for the extrinsic. We draw surfaces in three-dimensional space. We choose coordinates. We embed the abstract into the familiar.
+$$
+\sigma^2 \exp \left(-\frac{d_{\mathcal{M}}(x, y)^2}{2 \ell^2}\right)
+$$
+
+
+This immediately leads to a problem: the resulting function is not necessarily PSD, which means it is not a valid kernel (Feragen et al., 2015). The PSD-ness of the Euclidean SE kernel relies on a special algebraic property of Euclidean distance. In other words, the Euclidean SE kernel is an extrinsic formula that breaks when we try to make it intrinsic by naively swapping in the manifold's own distance.
+
+There is an alternative definition. The Euclidean SE kernel can also be characterized as
+
+$$
+k_{\infty, \kappa, \sigma^2}(x, y)=\operatorname{cov}(f(x), f(y))
+$$
+
+where $f$ is the Gaussian process satisfying the SPDE
+
+$$
+\exp \left(-\frac{\kappa^2}{4} \Delta\right) f=\mathcal{W}
+$$
+
+Here $\Delta$ is the Laplacian, $\mathcal{W}$ is Gaussian white noise, and $\exp \left(-\frac{\kappa^2}{4} \Delta\right)$ is the (rescaled) heat semigroup. The length-scale parameter $\kappa$ controls how far correlations spread.
+
+Every ingredient in this equation is intrinsic. The Laplace-Beltrami operator $\Delta$ is constructed from the metric tensor alone. White noise $\mathcal{W}$ requires only a measure on the space (the Riemannian volume form). No ambient space is needed. This means the equation can be written on any Riemannian manifold by simply by replacing $\Delta$ with the LaplaceBeltrami operator of that manifold, and the resulting kernel is guaranteed to be PSD (Borovitskiy et al., 2020).
+
+Intuitively, the extrinsic view asks "how far apart are these two points?" while the intrinsic view asks "what does smoothing look like on this space?". On $\mathbb{R}^n$, the intrinsic and extrinsic definitions give exactly the same kernel, but on curved spaces, only the intrinsic one survives.
+
+## Reference
+
+- **Feragen, A., Lauze, F., and Hauberg, S.** (2015). Geodesic exponential kernels: When curvature and linearity conflict. _Conference on Computer Vision and Pattern Recognition (CVPR)_.
+- **Borovitskiy, V., Terenin, A., Mostowsky, P., and Deisenroth, M. P.** (2020). Matérn Gaussian processes on Riemannian manifolds. _Advances in Neural Information Processing Systems (NeurIPS)_.
+
+
+
+
 
 

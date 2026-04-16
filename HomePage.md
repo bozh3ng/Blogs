@@ -33,7 +33,7 @@ Welcome to contact me.
 
 [[Pushforward Pullback]]: Pushforward and pullback in differential geometry and probability theory. The same covariant-contravariant duality, but with the roles of "thing measured" and "measurement device" swapped -- distributions are covariant (the probability monad), observables are contravariant.
 
-[[TheWorldFromWithinAndWithout]]: The intrinsic and extrinsic perspectives, take gravity for example.
+[[TheWorldFromWithinAndWithout]]: The intrinsic and extrinsic perspectives, take gravity and kernel for example.
 
 In dir Thesis:
 
