@@ -1,7 +1,27 @@
 bo.zheng.2020@gmail.com 
 Welcome to contact me.
 
+Obsidian Publish sites are dynamically rendered by JS, so fetch tools cannot read them. A statically rendered GitHub webpage suitable for AI tools: https://bozh3ng.github.io/
+
 # Summary:
+
+## In `/Thesis`:
+
+[[Part1-PriorKnowledge]]: Every neural network component -- architecture, activation, regularization -- encodes a structural assumption about the problem before training begins. Prior knowledge constrains the model to a subspace of function space; if the prior is correct, the model searches a smaller space with less data and better generalization. This article frames the series: groups, manifolds, and categories are the formal languages for describing what is being transferred and how.
+
+[[Part2-GroupStructure]]: A deep linear network has symmetry group $\prod_\ell \mathrm{GL}(n_\ell)$, making the map from parameters to functions wildly non-injective. Activation functions break this to specific centralizer subgroups ($\mathcal{D}^+ \rtimes S_n$ for ReLU, $S_n$ for sigmoid), and regularization breaks it further ($O_d$ for Frobenius norm, the hyperoctahedral group $B_d$ for entry-wise $\ell_p$). The hierarchy $\mathrm{GL}(n) \to \mathrm{Cent}(\sigma) \to G_{\text{reg}}$ traces how each design choice resolves the reparametrization problem and injects prior knowledge. Verified experimentally on small networks.
+
+[[Part2.5-ASharpGeneralizationBound]]: A valid gradient descent step must cross the orbit, because parameters within the same orbit are functionally equivalent. In standard training this is trivial — the gradient is automatically cross-orbit. However, orbit directions become problematic when measuring generalization: they are trivially flat, inflating apparent flatness and diluting sharpness estimates. We propose a quotient-space sharpness measure that factors out these directions, yielding tighter generalization bounds.
+
+[[Part3-PathEquivariance]]: Classical group equivariance relates isolated points via group actions but says nothing about continuous variation through data space. Path equivariance generalizes this: $F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0))$, requiring representations to evolve coherently along paths. We also introduce content-pose decomposition via principal bundles, where pose is a hard constraint lives in a group, can be implemented by for example weight sharing, content is a soft constraint does not live in group, can be implemented by for example smoothness regularization. The hierarchy from classical to homotopy to full path equivariance measures how much geometric structure the network respects.
+
+[[Part3.5-PERecoveryProof]] : A complete and self-contained proof of the PEN recovery theorem: classical group equivariance is recovered from path equivariance under a natural condition on path endpoints.
+
+[[Part4-CategoryTheoryPerspective]]: Equivariance is naturality. A $G$-equivariant layer is a natural transformation between functors from $\mathbf{B}G$ to the category of representations. This identification is not merely linguistic: composition of natural transformations gives equivariance of deep networks for free, and invariant pooling is a categorical limit with a universal property. The series unifies under one principle: a model is a functor, a good layer is a natural transformation, and the design of a neural network is the choice of which structure to preserve.
+
+[[Part5-PENHolonomyandSingleTangentFallacy]]: Path equivariance, holonomy, the single tangent fallacy, how are they related. 
+
+## Others:
 
 [[Independence in Bayesian Network Causal Diagrams]]: Four causal structures in Bayesian Networks, analyzed through conditional probability tables. The case-by-case analysis leads to d-separation: when conditioning on a collider opens a path, and when conditioning on a non-collider blocks one.
 
@@ -35,18 +55,3 @@ Welcome to contact me.
 
 [[TheWorldFromWithinAndWithout]]: The intrinsic and extrinsic perspectives, take gravity and kernel for example.
 
-In dir Thesis:
-
-[[Part1-PriorKnowledge]]: Every neural network component -- architecture, activation, regularization -- encodes a structural assumption about the problem before training begins. Prior knowledge constrains the model to a subspace of function space; if the prior is correct, the model searches a smaller space with less data and better generalization. This article frames the series: groups, manifolds, and categories are the formal languages for describing what is being transferred and how.
-
-[[Part2-GroupStructure]]: A deep linear network has symmetry group $\prod_\ell \mathrm{GL}(n_\ell)$, making the map from parameters to functions wildly non-injective. Activation functions break this to specific centralizer subgroups ($\mathcal{D}^+ \rtimes S_n$ for ReLU, $S_n$ for sigmoid), and regularization breaks it further ($O_d$ for Frobenius norm, the hyperoctahedral group $B_d$ for entry-wise $\ell_p$). The hierarchy $\mathrm{GL}(n) \to \mathrm{Cent}(\sigma) \to G_{\text{reg}}$ traces how each design choice resolves the reparametrization problem and injects prior knowledge. Verified experimentally on small networks.
-
-[[Part2.5-ASharpGeneralizationBound]]: A valid gradient descent step must cross the orbit, because parameters within the same orbit are functionally equivalent. In standard training this is trivial — the gradient is automatically cross-orbit. However, orbit directions become problematic when measuring generalization: they are trivially flat, inflating apparent flatness and diluting sharpness estimates. We propose a quotient-space sharpness measure that factors out these directions, yielding tighter generalization bounds.
-
-[[Part3-PathEquivariance]]: Classical group equivariance relates isolated points via group actions but says nothing about continuous variation through data space. Path equivariance generalizes this: $F(\gamma(t)) = a_\gamma(t) \cdot F(\gamma(0))$, requiring representations to evolve coherently along paths. We also introduce content-pose decomposition via principal bundles, where pose is a hard constraint lives in a group, can be implemented by for example weight sharing, content is a soft constraint does not live in group, can be implemented by for example smoothness regularization. The hierarchy from classical to homotopy to full path equivariance measures how much geometric structure the network respects.
-
-[[Part3.5-PERecoveryProof]] : A complete and self-contained proof of the PEN recovery theorem: classical group equivariance is recovered from path equivariance under a natural condition on path endpoints.
-
-[[Part4-CategoryTheoryPerspective]]: Equivariance is naturality. A $G$-equivariant layer is a natural transformation between functors from $\mathbf{B}G$ to the category of representations. This identification is not merely linguistic: composition of natural transformations gives equivariance of deep networks for free, and invariant pooling is a categorical limit with a universal property. The series unifies under one principle: a model is a functor, a good layer is a natural transformation, and the design of a neural network is the choice of which structure to preserve.
-
-[[Part5-PENHolonomyandSingleTangentFallacy]]: Path equivariance, holonomy, the single tangent fallacy, how are they related. 
