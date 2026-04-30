@@ -37,11 +37,11 @@ Obsidian Publish sites are dynamically rendered by JS, so fetch tools cannot rea
 
 [[PCA]]: PCA as eigendecomposition of the covariance matrix, connected to SVD via $C = \frac{1}{n-1} V \Sigma^2 V^T$. The implicit assumption: signal lives in high-variance directions, noise in low-variance ones.
 
-[[PML-1]]: MAP, MLE, two kinds of latents and two kinds of KL.
+[[PML-1 MAP MLE KL]]: MAP, MLE, two kinds of latents and two kinds of KL.
 
 [[PML-2 From Likelihood to ELBO]]: From maximum likelihood to the ELBO, with every notational abuse made explicit. Covers the reparameterization trick, the role of the encoder as an importance distribution, and joint optimization of $\theta$ and $\phi$.
 
-[[Probability-1]]: Measure-theoretic foundations: probability spaces, conditional probability as a restricted measure, random variables in $L^2(\Omega)$ where uncorrelated means orthogonal, and expectation as Lebesgue integration against a probability measure.
+[[Probability-0]] What does it mean to say a one-shot event has probability 50\% , or a die has probability 1/6? A three-layer view of probability.
 
 [[Product]]: A catalog of product operations across linear algebra and abstract algebra -- dot, cross, Kronecker, Hadamard, direct, free, semidirect, tensor -- with their universal properties and the distinctions that matter.
 

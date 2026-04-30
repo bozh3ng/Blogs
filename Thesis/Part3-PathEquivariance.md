@@ -86,7 +86,7 @@ This connects path equivariance to the classical differential geometry toolkit: 
 
 A natural question: when does path equivariance reduce back to classical group equivariance? The answer reveals the precise relationship between the two.
 
-The key is the *endpoint condition (I made this up)*: if all paths leading to the same group element $g$ induce the same transport endpoint $a_\gamma(1)$, regardless of which path was taken, then the transport depends only on the endpoint, not on the path. In this case, the map $g \mapsto a_\gamma(1)$ becomes a well-defined group homomorphism $\rho: G \to A$, and we recover:
+The key is the *endpoint condition (my own terminology)*: if all paths leading to the same group element $g$ induce the same transport endpoint $a_\gamma(1)$, regardless of which path was taken, then the transport depends only on the endpoint, not on the path. In this case, the map $g \mapsto a_\gamma(1)$ becomes a well-defined group homomorphism $\rho: G \to A$, and we recover:
 
 $$F(g \cdot x) = \rho(g) \cdot F(x)$$
 

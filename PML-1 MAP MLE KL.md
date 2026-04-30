@@ -96,6 +96,6 @@ $$
 
 This blows up whenever $p(z)>0$ but $q(z) \approx 0$. So $q$ is penalized for missing any region where $p$ has mass. The solution $q$ spreads out to cover all modes of $p$. If $p$ is bimodal, $q$ will stretch itself wide enough to cover both modes, even if that means putting mass in the gap between them where $p$ is actually low.
 
-![[kl_divergence_comparison.png]]
+![[file-20260429222924207.png]]
 
 The ELBO optimizes the mode-seeking direction $D_{\mathrm{KL}}\left(q_\phi(z \mid x) \| p_\theta(z \mid x)\right)$, which means the encoder will lock onto one mode of the true posterior if it's multimodal. 
